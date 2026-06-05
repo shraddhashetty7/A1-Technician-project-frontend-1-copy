@@ -1,0 +1,52 @@
+.custom-header ion-toolbar {
+  --background: linear-gradient(135deg, #4facfe, #00f2fe);
+  --color: #ffffff;
+  --border-width: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.custom-header ion-title {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Optional: add padding for better spacing */
+.custom-header {
+  padding-top: 5px;
+}
+/* ✅ Background Image */
+ion-content {
+  --background: url('/assets/images/bg-save-address.png') no-repeat center center / cover;
+}
+
+ion-card {
+  background: rgba(255, 255, 255, 0.6); /* more transparent */
+  backdrop-filter: blur(5px); /* glass effect 🔥 */
+}
+
+
+/* Existing styles (kept as-is) */
+ion-item {
+  --background: transparent;
+  margin-bottom: 10px;
+}
+
+ion-input {
+  font-size: 14px;
+}
+
+/* Location button */
+.location-btn {
+  margin-top: 15px;
+  --border-radius: 10px;
+}
+
+/* Save button */
+.save-btn {
+  margin-top: 12px;
+  --background: #4caf50;
+  --border-radius: 10px;
+  font-weight: 600;
+}

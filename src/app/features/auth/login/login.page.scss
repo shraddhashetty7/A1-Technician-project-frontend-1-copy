@@ -1,0 +1,115 @@
+.signup-container{
+  text-align:center;
+  padding:20px;
+  min-height:100vh;
+  background-image: url('/assets/images/bg.jpg');
+  background-size: cover;
+  background-position:center;
+  color:white;
+   padding: 40px 25px;
+  margin-top: 100px;
+}
+
+
+.google-btn{
+  --background: white;
+  color: #444;
+  font-weight: 500;
+  height: 50px;
+  margin-bottom: 15px;
+}
+.google-icon{
+  width:50px;
+  height:50px;
+  margin-right:10px;
+}
+
+/* Title */
+
+.title{
+  margin-top:40px;
+  font-weight:600;
+}
+
+/* Google Button */
+
+.google-btn{
+  margin-top:20px;
+  --background:white;
+  --color:black;
+  border-radius:10px;
+}
+
+/* Divider */
+
+.divider{
+  margin:20px 0;
+  font-size:14px;
+}
+
+/* Form */
+
+.form-box ion-item{
+  margin-bottom:12px;
+  border-radius:10px;
+  --background:white;
+  --color:black;
+}
+
+/* Signup Button */
+
+.signup-btn{
+  --background: #ff6a00;
+  --border-radius: 10px;
+  height: 50px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+/* Terms */
+
+.terms{
+  font-size:12px;
+  margin-top:15px;
+}
+
+.terms span{
+  text-decoration:underline;
+}
+
+/* Login */
+
+.login-link{
+  margin-top:10px;
+  font-size:14px;
+}
+
+.login-link span{
+  font-weight:bold;
+}
+.login-btn{
+  --background: #ff6a00;
+  --border-radius: 10px;
+  height: 50px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+.logo-section{
+  text-align: center;
+  margin-top: 40px;
+}
+ion-item{
+  margin-bottom: 14px;
+  border-radius: 12px;
+}
+
+.logo{
+  width:120px;
+}
+ion-content {
+  --background: none;
+  background-image: url('/assets/images/login.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

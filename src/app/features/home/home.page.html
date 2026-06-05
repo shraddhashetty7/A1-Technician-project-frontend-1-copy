@@ -1,0 +1,59 @@
+<ion-content>
+
+  <!-- Plumbing -->
+  <div class="service-card plumbing">
+    <div class="service-overlay">
+      <h2 class="service-title plumbing-title">🔧 Plumbing Services</h2>
+
+      <ul class="service-list">
+  <li>Leak Repairs</li>
+  <li>Drain Cleaning</li>
+  <li>Water Heater Repair</li>
+</ul>
+      <ion-button class="select-btn plumbing-btn" (click)="goToPlumbing()">
+  Select Service
+</ion-button>
+    </div>
+  </div>
+
+  <!-- Electrical -->
+  <div class="service-card electrical">
+    <div class="service-overlay">
+     <h2 class="service-title electrical-title">💡 Electrical Services</h2>
+
+
+      <ul class="service-list">
+  <li> Wiring & Rewiring</li>
+  <li>Panel Upgrades</li>
+  <li> Light Installation</li>
+</ul>
+
+      <ion-button class="select-btn electrical-btn" (click)="goToElectrical()">
+  Select Service
+</ion-button>
+    </div>
+  </div>
+
+  <!-- AC -->
+  <div class="service-card ac">
+    <div class="service-overlay">
+      <h2 class="service-title ac-title">❄ AC Services</h2>
+
+      <ul class="service-list">
+  <li> AC Repair</li>
+  <li> AC Maintenance</li>
+  <li> AC Installation</li>
+</ul>
+      <ion-button class="select-btn ac-btn" (click)="goToAC()">
+  Select Service
+</ion-button>
+    </div>
+  </div>
+  <!-- Emergency Button -->
+<div class="emergency-container">
+  <ion-button expand="block" class="call-emergency">
+    📞 Call and Book service
+  </ion-button>
+</div>
+
+</ion-content>

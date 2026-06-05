@@ -1,0 +1,170 @@
+ion-content{
+  --background: url('/assets/images/account-bg.png') no-repeat center center / cover;
+}
+.settings-icon{
+  width:30px;
+  height:30px;
+  margin-right:10px;
+}
+ion-header{
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+ion-toolbar{
+  --background:#3b82f6;   /* Blue header */
+  --color:white;
+}
+
+ion-title{
+  font-size:20px;
+  font-weight:600;
+  text-align:center;
+}
+
+/* PROFILE SECTION */
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 25px;
+  border-radius: 20px;
+
+  /* Glass Effect */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Border glow */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  /* Soft shadow */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+
+  /* Optional: for better look on light bg */
+  max-width: 320px;
+  margin: auto;
+}
+
+.profile-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  /* Glow ring */
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  margin-bottom: 12px;
+}
+
+.profile-info h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 5px 0;
+  color: #080808;
+}
+
+.profile-info p {
+  font-size: 14px;
+  color: rgba(11, 1, 1, 0.8);
+  margin-bottom: 12px;
+}
+
+.edit-btn {
+  --border-radius: 12px;
+  --color: #fff;
+  --border-color: rgba(255, 255, 255, 0.5);
+
+  backdrop-filter: blur(5px);
+
+  font-size: 13px;
+}
+
+/* EDIT PROFILE BUTTON */
+
+.edit-btn{
+  --background:white;
+  --color:#3a7bd5;
+  --border-radius:20px;
+  --border-color:#3a7bd5;
+  --border-width:1px;
+  --border-style:solid;
+    font-weight: bold;
+}
+
+/* TRACK + BOOKING BUTTONS */
+
+.quick-buttons{
+  padding:10px 15px;
+  display:flex;
+  gap:10px;
+}
+
+.track-btn{
+  flex:1;
+  --background:#09e639;
+  --color:rgba(16, 5, 5, 0.726);
+  --border-radius:12px;
+  font-weight: bold;
+  width: 220px;
+}
+
+.history-btn{
+  flex:1;
+  --background:#ff8c2b;
+  --color:rgba(15, 1, 1, 0.829);
+  --border-radius:12px;
+  font-weight: bold;
+  width: 220px;
+}
+
+.track-btn img,
+.history-btn img{
+  width:28px;
+  height:28px;
+  margin-right:6px;
+    font-weight: bold;
+}
+/* ACCOUNT MENU */
+
+ion-list{
+  margin-top:15px;
+  background:transparent;
+}
+
+ion-item{
+  --background:white;
+  margin:8px 15px;
+  border-radius:12px;
+  --padding-start:12px;
+}
+
+.menu-icon{
+  width:22px;
+  height:22px;
+  margin-right:12px;
+}
+.top-buttons {
+  display: flex;
+  gap: 12px;           // space between buttons
+  padding: 10px;
+}
+
+.top-buttons ion-button {
+  flex: 1;             // equal width
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;            // space between icon + text
+  text-transform: none;
+}
+
+/* Optional: icon size */
+.top-buttons img {
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,35 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <ion-title>Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="chat-container">
+    <div *ngFor="let msg of messages"
+         [ngClass]="msg.sender === 'me' ? 'my-msg' : 'other-msg'">
+
+      {{ msg.text }}
+
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-item lines="none">
+      <ion-input
+        [(ngModel)]="newMessage"
+        placeholder="Type message">
+      </ion-input>
+
+      <ion-button (click)="sendMessage()">
+        Send
+      </ion-button>
+    </ion-item>
+
+  </ion-toolbar>
+</ion-footer>

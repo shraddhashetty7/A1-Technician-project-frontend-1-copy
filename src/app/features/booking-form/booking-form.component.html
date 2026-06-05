@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirm Booking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="stacked">Name</ion-label>
+    <ion-input [(ngModel)]="booking.customerName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Service</ion-label>
+    <ion-input [(ngModel)]="booking.serviceType" readonly></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Address</ion-label>
+    <ion-input [(ngModel)]="booking.address"></ion-input>
+  </ion-item>
+
+  <ion-datetime
+  presentation="date-time"
+  [(ngModel)]="booking.bookingDate"
+  (ionChange)="onDateChange($event)">
+</ion-datetime>
+
+  <ion-item>
+    <ion-label position="stacked">Problem</ion-label>
+    <ion-textarea [(ngModel)]="booking.problemDescription"></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="block" (click)="submitBooking()">
+    Confirm Booking
+  </ion-button>
+
+</ion-content>

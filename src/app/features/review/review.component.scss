@@ -1,0 +1,161 @@
+/* 🌄 Full Background Image */
+ion-content {
+  --background: url('/assets/images/bg-rating.png') no-repeat center center / cover;
+  position: relative;
+}
+/* 🔷 Toolbar */
+ion-header ion-toolbar {
+  --background: rgba(243, 239, 239, 0.35); /* blends with your bg */
+  --color: #ffffff;
+  --border-width: 0;
+  backdrop-filter: blur(10px);
+
+  height: 72px;
+  padding: 0 10px;
+}
+
+/* 🔷 Title (centered properly) */
+ion-header ion-title {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: black;
+}
+
+/* 🔷 Back Button Container */
+ion-header ion-buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* 🔷 Back Button */
+ion-header ion-button {
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  text-transform: none; /* prevent uppercase */
+}
+
+/* Back button text + icon */
+ion-header ion-button {
+  --color: #000 !important;   /* Ionic variable */
+  color: #000 !important;     /* fallback */
+}
+
+/* Back icon */
+ion-header ion-icon {
+  font-size: 22px;
+  color: #000 !important;
+}
+
+/* 🔷 Optional: spacing fix so title looks centered */
+ion-header ion-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* 🔷 Header Toolbar */
+.custom-header ion-toolbar {
+  --background: linear-gradient(135deg, #4facfe, #00f2fe);
+  --color: #ffffff;
+  --border-width: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  height: 70px; /* ⬅️ Increased height */
+}
+
+/* 🔷 Title (Heading) */
+.custom-header ion-title {
+  font-size: 28px; /* ⬅️ Bigger heading */
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* 🔷 Back Button (Text + Icon) */
+.custom-header ion-button {
+  font-size: 18px; /* ⬅️ Bigger "Back" text */
+  font-weight: 600;
+}
+
+/* 🔷 Back Icon */
+.custom-header ion-icon {
+  font-size: 22px; /* ⬅️ Bigger arrow */
+  margin-right: 4px;
+  color: black;
+}
+.custom-header {
+  padding-top: 8px;
+}
+/* 🌑 Dark Overlay for readability */
+ion-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+
+/* 📦 Main Container */
+.review-container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+
+  /* Glass effect */
+  background: whitelpha(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  color: #fff;
+}
+
+/* 📝 Heading */
+h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ⭐ Stars Layout */
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+/* ⭐ Star Style */
+.stars ion-icon {
+  font-size: 32px;
+  color: #ccc;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* ⭐ Selected Star */
+.stars ion-icon[name="star"] {
+  color: #ffc107;
+}
+
+/* ✍️ Textarea */
+ion-textarea {
+  margin-top: 15px;
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+/* 🔵 Button Styling */
+ion-button {
+  margin-top: 20px;
+  --border-radius: 12px;
+  font-weight: 600;
+}

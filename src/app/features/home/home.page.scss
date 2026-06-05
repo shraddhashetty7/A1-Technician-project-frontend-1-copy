@@ -1,0 +1,125 @@
+ion-content {
+  --background: none;
+  background: url('/assets/images/bg.png') no-repeat center center / cover;
+  --padding-top: 100px;   /* moves services down */
+}
+
+.service-title{
+  padding:6px 12px;
+  border-radius:8px;
+  display:inline-block;
+  font-size:18px;
+  font-weight:600;
+  color:white;
+  margin-bottom:8px;
+}
+
+/* Different colors for each service */
+
+.plumbing-title{
+  background:#2f5fa4;
+}
+
+.electrical-title{
+  background:#ff7a00;
+}
+
+.ac-title{
+  background:#00a8a8;
+}
+.ac-btn{
+  --background:#0aa39a;
+  --color:white;
+}
+.service-card{
+  margin:18px;
+  border-radius:14px;
+  overflow:hidden;
+  height:210px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  box-shadow:0 6px 12px rgba(0,0,0,0.2);
+}
+
+.service-overlay{
+  background:rgba(255,255,255,0.85);
+  height:100%;
+  padding:18px;
+}
+
+.service-overlay h2{
+  font-size:20px;
+  font-weight:600;
+}
+
+.service-overlay ul{
+  margin-top:8px;
+  margin-bottom:10px;
+  padding-left:18px;
+}
+
+.service-overlay li{
+  font-size:14px;
+  margin-bottom:4px;
+}
+.service-title{
+  padding:6px 14px;
+  border-radius:8px;
+  display:inline-block;
+  font-size:18px;
+  font-weight:600;
+  color:white;
+  margin-bottom:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+.plumbing{
+  background-image: url("/assets/images/plumber.jpg");
+}
+
+.electrical{
+  background-image: url("/assets/images/electrician.jpg");
+}
+
+.ac{
+  background-image: url("/assets/images/ac.jpg");
+}
+
+.select-btn{
+  font-size:13px;
+  height:34px;
+  font-weight: bold;
+}
+
+.blue{
+  --background:#2f5fa4;
+}
+
+.orange{
+  --background:#ff7a00;
+}
+
+.emergency{
+  --background:#ff6a00;
+}
+.emergency-container{
+  padding:20px;
+}
+
+.call-emergency{
+  --background: orange;
+  font-size:16px;
+  height:45px;
+  --border-radius:25px;   /* makes button rounded */
+}
+.service-list {
+  list-style: none;
+  padding-left: 0;
+  font-weight: bold;
+}
+
+.service-list li::before {
+  content: "✔";
+  color: green;
+  margin-right: 8px;
+}

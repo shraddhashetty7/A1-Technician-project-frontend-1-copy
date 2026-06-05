@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">Back</ion-button>
+       <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-buttons>
+
+    <ion-title>Track Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+
+  <!-- Background Image -->
+  <div class="track-container">
+
+    <!-- Order Card -->
+    <div class="order-card">
+      <h2>Order #12345</h2>
+      <p>Expected Delivery: 18 April</p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+
+      <div class="timeline-item active">
+        <div class="dot green"></div>
+        <div class="content">Order Placed</div>
+      </div>
+
+      <div class="timeline-item active">
+        <div class="dot yellow"></div>
+        <div class="content">In Transit</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="dot gray"></div>
+        <div class="content">Delivered</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

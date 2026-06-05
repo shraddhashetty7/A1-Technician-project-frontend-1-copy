@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-back-outline" slot="start"></ion-icon>
+        Back
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Review</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="review-container">
+
+    <h2>Rate Your Experience</h2>
+
+    <!-- ⭐ Star Rating -->
+    <div class="stars">
+  <ion-icon 
+    *ngFor="let star of stars; let i = index"
+    [name]="i < rating ? 'star' : 'star-outline'"
+    (click)="setRating(i + 1)">
+  </ion-icon>
+</div>
+
+    <!-- Selected Rating Text -->
+    <p *ngIf="rating > 0">You selected {{ rating }} star(s)</p>
+
+    <!-- Comment Box -->
+    <ion-textarea 
+      placeholder="Write your review..."
+      [(ngModel)]="comment">
+    </ion-textarea>
+
+    <!-- Submit Button -->
+    <ion-button expand="block" (click)="submitReview()">
+      Submit Review
+    </ion-button>
+
+  </div>
+
+</ion-content>

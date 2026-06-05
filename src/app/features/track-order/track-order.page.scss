@@ -1,0 +1,128 @@
+/* HEADER */
+.no-shadow-header {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+ion-button {
+  color: #000; // or white based on your header
+}
+
+ion-icon {
+  font-size: 22px;
+}
+
+/* CONTENT BACKGROUND */
+ion-content {
+  --background: none !important;
+}
+
+/* MAIN CONTAINER */
+.track-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 16px;
+
+  /* Background Image */
+  background: url('/assets/images/track-order-bg.png') no-repeat center center;
+  background-size: cover;
+}
+
+/* ORDER CARD */
+.order-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+  }
+
+  p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #444;
+  }
+}
+
+/* TIMELINE */
+.timeline {
+  position: relative;
+  margin-left: 10px;
+  padding-left: 20px;
+}
+
+/* Vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ddd;
+}
+
+/* Timeline item */
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* Dots */
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 12px;
+  z-index: 1;
+  background: #ccc;
+}
+
+.dot.green {
+  background: #2ecc71;
+}
+
+.dot.yellow {
+  background: #f1c40f;
+}
+
+.dot.gray {
+  background: #bdc3c7;
+}
+
+/* Text */
+.content {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000; /* bold black */
+}
+
+/* ACTIVE STATE */
+.timeline-item.active .content {
+  color: #000;
+  font-weight: 700;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 576px) {
+  .order-card {
+    padding: 14px;
+  }
+
+  .content {
+    font-size: 14px;
+  }
+}
