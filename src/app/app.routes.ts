@@ -8,12 +8,31 @@ export const routes: Routes = [
     import('./features/splash/splash.page')
       .then(m => m.SplashPage)
 },
+{
+    path: 'role-selection',
+    loadComponent: () => import('./pages/role-selection/role-selection.page').then( m => m.RoleSelectionPage)
+  },
+  {
+  path: 'customer-login',
+  loadComponent: () =>
+    import('./features/auth/customer-login/customer-login.page')
+      .then(m => m.CustomerLoginPage)
+},
+  {
+    path: 'admin-login',
+    loadComponent: () => import('./features/auth/admin-login/admin-login.page').then( m => m.AdminLoginPage)
+  },
+  {
+    path: 'technician-login',
+    loadComponent: () => import('./features/auth/technician-login/technician-login.page').then( m => m.TechnicianLoginPage)
+  },
+  
 
 {
-  path: 'login',
+  path: 'customer-register',
   loadComponent: () =>
-    import('./features/auth/login/login.page')
-      .then(m => m.LoginPage)
+    import('./features/auth/customer-register/customer-register.page')
+      .then(m => m.CustomerRegisterPage)
 },
 
 {
@@ -132,6 +151,11 @@ export const routes: Routes = [
   path: '**',
   redirectTo: ''
 },
+  {
+    path: 'customer-register',
+    loadComponent: () => import('./features/auth/customer-register/customer-register.page').then( m => m.CustomerRegisterPage)
+  },
+  
   
   
   

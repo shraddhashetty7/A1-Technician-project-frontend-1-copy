@@ -15,7 +15,7 @@ export class SplashPage {
   constructor(private router: Router) {
 
     setTimeout(() => {
-      this.router.navigateByUrl('/tabs/home');
+      this.router.navigateByUrl('/role-selection');
     }, 3000);
 
   }
