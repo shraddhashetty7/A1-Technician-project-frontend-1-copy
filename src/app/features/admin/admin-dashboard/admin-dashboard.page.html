@@ -1,0 +1,65 @@
+<ion-content class="ion-padding">
+
+  <h1>Admin Orders</h1>
+
+  <p>Total Bookings: {{ bookings.length }}</p>
+
+  <h2>Technicians</h2>
+
+  <p>Total Technicians: {{ technicians.length }}</p>
+
+  
+
+
+  <ion-card *ngFor="let booking of bookings">
+
+    <ion-card-content>
+
+      <h2>{{ booking.customerName }}</h2>
+
+      <p><strong>Service:</strong> {{ booking.serviceType }}</p>
+
+      <p><strong>Date:</strong> {{ booking.bookingDate }}</p>
+
+      <p><strong>Address:</strong> {{ booking.address }}</p>
+
+      <p><strong>Status:</strong> {{ booking.status }}</p>
+
+      <p>
+        <strong>Assigned Technician:</strong>
+        {{ booking.technicianName || 'Not Assigned' }}
+      </p>
+
+      <h3>Select Technician</h3>
+
+      
+
+<ion-button
+  *ngFor="let tech of technicians"
+  expand="block"
+  (click)="assignTechnician(booking, tech)">
+
+  👨‍🔧 {{ tech.name }}
+  <br>
+  {{ tech.specialization }}
+
+</ion-button>
+      <br><br>
+
+      <ion-button
+        size="small"
+        (click)="updateStatus(booking, 'Assigned')">
+        Assign
+      </ion-button>
+
+      <ion-button
+        size="small"
+        (click)="updateStatus(booking, 'Completed')">
+        Complete
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

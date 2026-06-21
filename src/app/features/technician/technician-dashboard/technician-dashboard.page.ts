@@ -8,27 +8,26 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonItem,
-  IonInput,
   IonButton
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-technician-login',
-  templateUrl: './technician-login.page.html',
-  styleUrls: ['./technician-login.page.scss'],
+  selector: 'app-technician-dashboard',
+  templateUrl: './technician-dashboard.page.html',
+  styleUrls: ['./technician-dashboard.page.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonItem,
-    IonInput,
-    IonButton,
     CommonModule,
+    FormsModule,
     RouterLink,
-    FormsModule
-]
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonButton
+  ]
 })
-export class TechnicianLoginPage implements OnInit {
+export class TechnicianDashboardPage implements OnInit {
 
   constructor() { }
 

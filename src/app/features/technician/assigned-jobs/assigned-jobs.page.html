@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Assigned Jobs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card *ngFor="let job of jobs">
+
+    <ion-card-content>
+
+      <h2>{{ job.customerName }}</h2>
+
+      <p><strong>Service:</strong> {{ job.serviceType }}</p>
+
+      <p><strong>Address:</strong> {{ job.address }}</p>
+
+      <p><strong>Status:</strong> {{ job.status }}</p>
+      <ion-button
+  size="small"
+  (click)="updateStatus(job, 'In Progress')">
+  Start Work
+</ion-button>
+
+<ion-button
+  size="small"
+  (click)="updateStatus(job, 'Completed')">
+  Complete Work
+</ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

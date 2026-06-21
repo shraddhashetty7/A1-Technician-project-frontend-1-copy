@@ -1,0 +1,25 @@
+<ion-content class="ion-padding">
+
+  <h1>Admin Orders</h1>
+
+  <ion-card *ngFor="let order of orders">
+
+    <ion-card-content>
+
+      <h2>{{ order.customerName }}</h2>
+
+      <p>
+        <strong>Service:</strong>
+        {{ order.serviceType }}
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        {{ order.status }}
+      </p>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

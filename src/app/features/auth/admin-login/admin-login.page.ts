@@ -1,20 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
+import {
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonItem,
+  IonInput,
+  IonButton
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.page.html',
   styleUrls: ['./admin-login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonContent,
+    IonItem,
+    IonInput,
+    IonButton,
+    RouterLink
+]
 })
-export class AdminLoginPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class AdminLoginPage {
 
 }
