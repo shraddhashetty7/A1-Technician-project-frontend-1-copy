@@ -1,31 +1,46 @@
+<!--
 <ion-header>
   <ion-toolbar class="header-toolbar">
   </ion-toolbar>
 </ion-header>
+-->
+
 
 <ion-content>
 
+
 <div class="electrical-bg">
+
 
   <div class="service-container">
 
+
     <div class="service-box" *ngFor="let service of services">
+
 
       <ion-checkbox [(ngModel)]="service.selected"></ion-checkbox>
 
+
       <img [src]="'assets/icons/' + service.icon" class="service-icon">
+
 
       <span class="service-name">{{service.name}}</span>
 
+
     </div>
+
 
   </div>
 
+
   <!-- COMPLAINT BOX -->
+
 
   <div class="complaint-box">
 
+
     <ion-label class="complaint-label">Raise an Electrical Complaint</ion-label>
+
 
     <ion-textarea
       [(ngModel)]="complaintText"
@@ -34,27 +49,34 @@
       class="complaint-textarea">
     </ion-textarea>
 
+
   </div>
 
-  <!-- Add to cart -->
 
-  <ion-button expand="block" class="cart-btn" (click)="addToCart()">
-    🛒 Add To Cart
-  </ion-button>
-
+ <!--
+<ion-button expand="block" class="cart-btn" (click)="addToCart()">
+  🛒 Add To Cart
+</ion-button>
+-->
   <!-- Selected Services -->
+
 
   <div class="cart-board" *ngIf="cart.length > 0">
 
+
     <h3>Selected Electrical Services</h3>
+
 
     <div *ngFor="let item of cart" class="cart-item">
       {{item.name}}
     </div>
 
+
   </div>
 
+
   <!-- Book Service -->
+
 
   <!-- BOOK BUTTON -->
     <ion-button expand="block" (click)="bookNow()">
@@ -62,6 +84,9 @@
     </ion-button>
 
 
+
+
 </div>
+
 
 </ion-content>

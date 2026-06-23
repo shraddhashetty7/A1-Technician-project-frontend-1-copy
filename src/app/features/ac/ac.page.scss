@@ -1,12 +1,16 @@
 /* HEADER */
 
+
 .header-toolbar{
-  --background: #1e90ff url('/assets/images/ac-header.png') no-repeat center center / cover;
-  height: 280px;
+  /*
+--background: #1e90ff url('/assets/images/ac-header.png') no-repeat center center / cover;
+height: 200px;
+*/
   display:flex;
   align-items:center;
   justify-content:center;
 }
+
 
 .header-container{
   display:flex;
@@ -14,213 +18,316 @@
   gap:10px;
 }
 
+
 /* BACKGROUND IMAGE */
+
 
 .ac-bg{
 
+
   background-image: url("/assets/images/ac-bg.png");
+
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
+
   min-height: 100vh;
   width: 100%;
 
+
 }
+
 
 /* SERVICE GRID */
 
+
 .service-container{
 
+
 padding:15px;
+
 
 display:grid;
 
+
 grid-template-columns:repeat(2,1fr);
+
 
 gap:12px;
 
+
 }
+
 
 /* SERVICE BOX */
 
+
 .service-box{
+
 
 display:flex;
 
+
 align-items:center;
+
 
 gap:10px;
 
+
 background:rgb(230, 245, 255);   /* cool blue card */
+
 
 padding:12px;
 
+
 border-radius:8px;
 
+
 font-weight:bold;
+
 
 box-shadow:0 2px 6px rgba(0,0,0,0.1);
 
+
 }
+
 
 /* ICON */
 
+
 .service-icon{
+
 
 width:35px;
 
+
 height:35px;
 
+
 }
+
 
 /* TEXT */
 
+
 .service-name{
+
 
 font-size:14px;
 
+
 font-weight:bold;
 
+
 }
+
 
 /* Complaint Container */
 
+
 .complaint-box {
+
 
 margin:20px 15px;
 
+
 padding:15px;
 
+
 background:#ffffff;
+
 
 border-radius:12px;
 
+
 box-shadow:0 3px 10px rgba(0,0,0,0.08);
 
+
 }
+
 
 /* Label */
 
+
 .complaint-label {
+
 
 font-size:16px;
 
+
 font-weight:600;
+
 
 color:#2c3e50;
 
+
 margin-bottom:8px;
+
 
 display:block;
 
+
 }
+
 
 /* Textarea */
 
+
 .complaint-textarea {
+
 
 --padding-start:10px;
 
+
 --padding-end:10px;
+
 
 --padding-top:8px;
 
+
 --padding-bottom:8px;
+
 
 border:1px solid #dcdcdc;
 
+
 border-radius:10px;
+
 
 background:#f9f9f9;
 
+
 font-size:14px;
+
 
 color:#333;
 
+
 transition:all 0.3s ease;
 
+
 }
+
 
 /* Focus Effect */
 
+
 .complaint-textarea:focus-within {
+
 
 border:1px solid #1e90ff;
 
+
 background:#ffffff;
+
 
 box-shadow:0 0 6px rgba(30,144,255,0.25);
 
+
 }
+
 
 /* Placeholder */
 
+
 .complaint-textarea::placeholder {
+
 
 color:#999;
 
+
 }
+
 
 /* BUTTONS */
 
+
 .cart-btn{
 
+
 margin:15px;
+
 
 --background:#00b4ff;
 
+
 --color:white;
+
 
 font-weight:bold;
 
+
 border-radius:10px;
+
 
 }
 
+
 .book-btn{
 
+
 margin:15px;
+
+
 
 
 --background:#0077ff;
 
+
 --color:white;
+
 
 font-weight:bold;
 
+
 border-radius:10px;
 
+
 }
+
 
 .ac-btn {
   width: 350px;
   margin: auto;
 }
 
+
 /* CART BOARD */
+
 
 .cart-board{
 
+
 margin:15px;
+
 
 background:#e6f4ff;
 
+
 padding:12px;
+
 
 border-radius:8px;
 
+
 }
+
 
 .cart-item{
 
+
 background:white;
+
 
 padding:8px;
 
+
 margin-top:6px;
 
+
 border-radius:6px;
+
 
 }

@@ -1,15 +1,15 @@
 <ion-header>
   <ion-toolbar class="no-shadow-header">
 
-    <!-- Back Button -->
     <ion-buttons slot="start">
-      <ion-buttons slot="start">
-      <ion-button (click)="goBack()">Back</ion-button>
-       <ion-icon name="chevron-back-outline"></ion-icon>
-    </ion-buttons>
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+        Back
+      </ion-button>
     </ion-buttons>
 
     <ion-title class="header-title">Booking History</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
@@ -19,21 +19,31 @@
 
     <div *ngFor="let item of bookings" class="history-card">
 
-      <div class="service">{{ item.service }}</div>
+  <div class="service">
+    {{ item.serviceType }}
+  </div>
 
-      <div class="date">{{ item.date }}</div>
+  <div class="date">
+    {{ item.bookingDate | date:'dd-MMM-yyyy' }}
+  </div>
 
-      <div 
-        class="status"
-        [ngClass]="{
-          'completed': item.status === 'Completed',
-          'cancelled': item.status === 'Cancelled'
-        }"
-      >
-        {{ item.status }}
-      </div>
+  <p *ngIf="item.technicianName">
+    <strong>Technician:</strong>
+   <p>
+  Technician: {{ item.technicianName }}
 
-    </div>
+  </p>
+
+  <div
+    class="status"
+    [ngClass]="{
+      'completed': item.status === 'Completed',
+      'cancelled': item.status === 'Cancelled'
+    }">
+    Status: {{ item.status }}
+  </div>
+
+</div>
 
   </div>
 

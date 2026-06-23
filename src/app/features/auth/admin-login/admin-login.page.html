@@ -1,13 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>admin-login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">admin-login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="login-container">
+
+    <div class="logo-section">
+      <h1>Admin Login</h1>
+      <p>Access Admin Dashboard</p>
+    </div>
+
+    <div class="form-card">
+
+      <ion-item>
+        <ion-input
+          type="email"
+          label="Admin Email"
+          labelPlacement="floating"
+          placeholder="admin@matrimony.com">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          type="password"
+          label="Password"
+          labelPlacement="floating"
+          placeholder="Enter Password">
+        </ion-input>
+      </ion-item>
+
+      <ion-button
+              expand="block"
+             routerLink="/admin-dashboard">
+            Login
+      </ion-button>
+
+    </div>
+
+  </div>
+
 </ion-content>

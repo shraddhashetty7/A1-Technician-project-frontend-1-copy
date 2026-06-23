@@ -1,26 +1,34 @@
 <ion-content>
 
+
   <div class="plumbing-bg">
+
 
     <!-- SERVICE LIST -->
     <div class="service-container">
       <div class="service-box" *ngFor="let service of services">
 
-        <ion-checkbox 
+
+        <ion-checkbox
           [(ngModel)]="service.selected"
           (ionChange)="updateCart()">
         </ion-checkbox>
 
+
         <img [src]="'assets/icons/' + service.icon" class="service-icon">
 
+
         <span class="service-name">{{service.name}}</span>
+
 
       </div>
     </div>
 
+
     <!-- COMPLAINT BOX -->
     <div class="complaint-box">
       <ion-label class="complaint-label">Raise a Complaint</ion-label>
+
 
       <ion-textarea
         [(ngModel)]="complaintText"
@@ -30,25 +38,32 @@
       </ion-textarea>
     </div>
 
-    <!-- ADD TO CART BUTTON -->
-    <ion-button expand="block" class="cart-btn" (click)="updateCart()">
-      Add To Cart
-    </ion-button>
+
+  <!--
+<ion-button expand="block" class="cart-btn" (click)="updateCart()">
+  Add To Cart
+</ion-button>
+-->
+
 
     <!-- CART BOARD -->
     <div class="cart-board" *ngIf="cart.length > 0">
       <h3>🛒 Selected Services</h3>
+
 
       <div *ngFor="let item of cart" class="cart-item">
         {{ item.name }}
       </div>
     </div>
 
+
     <!-- BOOK BUTTON -->
     <ion-button expand="block" (click)="bookNow()">
       Book Service
     </ion-button>
 
+
   </div>
+
 
 </ion-content>
