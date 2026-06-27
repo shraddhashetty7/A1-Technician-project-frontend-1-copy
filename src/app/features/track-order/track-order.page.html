@@ -13,32 +13,51 @@
   <!-- Background Image -->
   <div class="track-container">
 
-    <!-- Order Card -->
-    <div class="order-card">
-      <h2>Order #12345</h2>
-      <p>Expected Delivery: 18 April</p>
-    </div>
+    <div class="order-card" *ngIf="booking">
 
+  <h2>Order #{{ booking.id }}</h2>
+
+  <p>
+    Service: {{ booking.serviceType }}
+  </p>
+
+  <p>
+    Customer: {{ booking.customerName }}
+  </p>
+
+  <p>
+    Status: {{ booking.status }}
+  </p>
+
+  <p *ngIf="booking.technicianName">
+    Technician: {{ booking.technicianName }}
+  </p>
+
+</div>
     <!-- Timeline -->
-    <div class="timeline">
+    <div class="timeline" *ngIf="booking">
 
-      <div class="timeline-item active">
-        <div class="dot green"></div>
-        <div class="content">Order Placed</div>
-      </div>
+  <!-- STEP 1 -->
+  <div class="step" [ngClass]="getStepClass(1)">
+    <div class="circle"></div>
+    <div class="label">Assigned</div>
+  </div>
 
-      <div class="timeline-item active">
-        <div class="dot yellow"></div>
-        <div class="content">In Transit</div>
-      </div>
+  <!-- STEP 2 -->
+  <div class="step" [ngClass]="getStepClass(2)">
+    <div class="circle"></div>
+    <div class="label">In Transit</div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="dot gray"></div>
-        <div class="content">Delivered</div>
-      </div>
+  <!-- STEP 3 -->
+  <div class="step" [ngClass]="getStepClass(3)">
+    <div class="circle"></div>
+    <div class="label">Completed</div>
+  </div>
 
+</div>
     </div>
 
-  </div>
+ 
 
 </ion-content>

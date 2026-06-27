@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BookingService {
+  
 
   private apiUrl = 'https://localhost:7122/api/Booking';
 
@@ -19,6 +20,10 @@ export class BookingService {
     return this.http.get(this.apiUrl);
   }
 
+  getBookingById(id: number) {
+  return this.http.get<any>(`${this.apiUrl}/${id}`);
+}
+
   updateBooking(id: number, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, data);
   }
@@ -26,4 +31,8 @@ export class BookingService {
   deleteBooking(id: number) {
   return this.http.delete(`${this.apiUrl}/${id}`);
 }
+cancelBooking(id: number): Observable<any> {
+  return this.http.put(`${this.apiUrl}/cancel/${id}`, {});
+}
+
 }

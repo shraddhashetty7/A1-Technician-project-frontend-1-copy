@@ -9,28 +9,47 @@
 
     <div class="form-card">
 
+      <!-- EMAIL -->
       <ion-item>
         <ion-input
           type="email"
           label="Admin Email"
           labelPlacement="floating"
-          placeholder="admin@matrimony.com">
+          placeholder="admin@matrimony.com"
+          [(ngModel)]="email">
         </ion-input>
       </ion-item>
 
+      <!-- PASSWORD WITH EYE ICON -->
       <ion-item>
+
         <ion-input
-          type="password"
+          [type]="showPassword ? 'text' : 'password'"
           label="Password"
           labelPlacement="floating"
-          placeholder="Enter Password">
+          placeholder="Enter Password"
+          [(ngModel)]="password">
         </ion-input>
+
+        <ion-button
+          fill="clear"
+          slot="end"
+          (click)="togglePassword()">
+
+          <ion-icon
+            [name]="showPassword ? 'eye-off-outline' : 'eye-outline'">
+          </ion-icon>
+
+        </ion-button>
+
       </ion-item>
 
+      <!-- LOGIN BUTTON -->
       <ion-button
-              expand="block"
-             routerLink="/admin-dashboard">
-            Login
+        expand="block"
+        (click)="login()">
+
+        Login
       </ion-button>
 
     </div>

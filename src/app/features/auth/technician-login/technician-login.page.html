@@ -11,23 +11,32 @@
 
       <ion-item>
         <ion-input
-          label="Mobile Number"
-          labelPlacement="floating">
+          type="email"
+          label="Email"
+          labelPlacement="floating"
+          [(ngModel)]="email">
         </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-input
-          type="password"
+          [type]="showPassword ? 'text' : 'password'"
           label="Password"
-          labelPlacement="floating">
+          labelPlacement="floating"
+          [(ngModel)]="password">
         </ion-input>
+        <ion-icon
+          slot="end"
+          [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"
+          (click)="togglePassword()"
+          style="cursor:pointer; margin-top: 16px;">
+        </ion-icon>
       </ion-item>
 
       <ion-button
-             expand="block"
-             routerLink="/technician-dashboard">
-               Login
+        expand="block"
+        (click)="login()">
+        LOGIN
       </ion-button>
 
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 import {
   IonContent,
@@ -10,7 +11,6 @@ import {
 
 import { BookingService } from '../../../services/booking.service';
 import { TechnicianService } from '../../../services/technician.service';
-
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -32,7 +32,8 @@ export class AdminDashboardPage implements OnInit {
 
   constructor(
     private bookingService: BookingService,
-    private technicianService: TechnicianService
+    private technicianService: TechnicianService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -57,11 +58,12 @@ export class AdminDashboardPage implements OnInit {
       next: (data) => {
         console.log('Technicians:', data);
 
-data.forEach((tech: any, index: number) => {
-  console.log(`Technician ${index}:`, tech);
-  console.log(`Name: ${tech.name}`);
-  console.log(`Specialization: ${tech.specialization}`);
-});
+        data.forEach((tech: any, index: number) => {
+          console.log(`Technician ${index}:`, tech);
+          console.log(`Name: ${tech.name}`);
+          console.log(`Specialization: ${tech.specialization}`);
+        });
+
         this.technicians = data;
       },
       error: (err) => {
@@ -116,5 +118,14 @@ data.forEach((tech: any, index: number) => {
         console.error('Assignment Failed', err);
       }
     });
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    console.log('Admin Logged Out');
+
+    this.router.navigate(['/admin-login']);
   }
 }

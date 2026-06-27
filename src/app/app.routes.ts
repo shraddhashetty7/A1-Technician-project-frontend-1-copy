@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
 
@@ -52,25 +53,33 @@ export const routes: Routes = [
         .then(m => m.AdminDashboardPage)
   },
   {
-    path: 'admin-orders',
-    loadComponent: () =>
-      import('./features/admin/admin-orders/admin-orders.page')
-        .then(m => m.AdminOrdersPage)
-  },
+  path: 'admin-orders',
+  canActivate: [authGuard],
+  data: { role: 'Admin' },
+  loadComponent: () =>
+    import('./features/admin/admin-orders/admin-orders.page')
+      .then(m => m.AdminOrdersPage)
+},
+
 
   // Technician
   {
-    path: 'technician-dashboard',
-    loadComponent: () =>
-      import('./features/technician/technician-dashboard/technician-dashboard.page')
-        .then(m => m.TechnicianDashboardPage)
-  },
+  path: 'technician-dashboard',
+  canActivate: [authGuard],
+  data: { role: 'Technician' },
+  loadComponent: () =>
+    import('./features/technician/technician-dashboard/technician-dashboard.page')
+      .then(m => m.TechnicianDashboardPage)
+},
+  
   {
-    path: 'assigned-jobs',
-    loadComponent: () =>
-      import('./features/technician/assigned-jobs/assigned-jobs.page')
-        .then(m => m.AssignedJobsPage)
-  },
+  path: 'assigned-jobs',
+  canActivate: [authGuard],
+  data: { role: 'Technician' },
+  loadComponent: () =>
+    import('./features/technician/assigned-jobs/assigned-jobs.page')
+      .then(m => m.AssignedJobsPage)
+},
 
   // Booking
   {
@@ -152,11 +161,11 @@ export const routes: Routes = [
       },
 
       {
-        path: 'track-order',
-        loadComponent: () =>
-          import('./features/track-order/track-order.page')
-            .then(m => m.TrackOrderPage)
-      },
+  path: 'track-order/:id',
+  loadComponent: () =>
+    import('./features/track-order/track-order.page')
+      .then(m => m.TrackOrderPage)
+},
 
       {
         path: 'saved-address',

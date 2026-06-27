@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import {
   IonContent,
@@ -29,9 +29,20 @@ import {
 })
 export class TechnicianDashboardPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    // Remove stored login data
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    console.log('Technician Logged Out');
+
+    // Redirect to technician login page
+    this.router.navigate(['/technician-login']);
   }
 
 }

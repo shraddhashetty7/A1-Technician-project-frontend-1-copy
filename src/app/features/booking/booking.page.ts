@@ -18,7 +18,7 @@ export class BookingHistoryPage implements OnInit {
   constructor(
     private router: Router,
     private bookingService: BookingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadBookings();
@@ -27,14 +27,36 @@ export class BookingHistoryPage implements OnInit {
   loadBookings() {
     this.bookingService.getBookings().subscribe({
       next: (data) => {
-  console.log('Bookings API Response');
-  console.table(data);
-  this.bookings = data;
-},
+        console.log('Bookings API Response');
+        console.table(data);
+        this.bookings = data;
+      },
       error: (err) => {
         console.error('Error loading bookings', err);
       }
     });
+  }
+
+  trackOrder(id: number) {
+    this.router.navigate(['/tabs/track-order', id]);
+  }
+
+  cancelBooking(id: number) {
+
+    if (confirm('Are you sure you want to cancel this booking?')) {
+
+      this.bookingService.cancelBooking(id).subscribe({
+        next: () => {
+          alert('Booking cancelled successfully');
+          this.loadBookings();
+        },
+        error: (err: any) => {
+          console.error(err);
+          alert('Failed to cancel booking');
+        }
+      });
+
+    }
   }
 
   goBack() {

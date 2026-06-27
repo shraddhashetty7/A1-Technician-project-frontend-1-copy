@@ -8,7 +8,9 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title class="header-title">Booking History</ion-title>
+    <ion-title class="header-title">
+      Booking History
+    </ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -19,31 +21,84 @@
 
     <div *ngFor="let item of bookings" class="history-card">
 
-  <div class="service">
-    {{ item.serviceType }}
-  </div>
+      <!-- Service Type -->
+      <div class="service">
+        {{ item.serviceType }}
+      </div>
 
-  <div class="date">
-    {{ item.bookingDate | date:'dd-MMM-yyyy' }}
-  </div>
+      <!-- Booking Date -->
+      <div class="date">
+        {{ item.bookingDate | date:'dd-MMM-yyyy' }}
+      </div>
 
-  <p *ngIf="item.technicianName">
-    <strong>Technician:</strong>
-   <p>
-  Technician: {{ item.technicianName }}
+      <!-- Customer Name (Optional) -->
+      <p *ngIf="item.customerName">
+        <strong>Customer:</strong>
+        {{ item.customerName }}
+      </p>
 
-  </p>
+      <!-- Technician Name -->
+      <p *ngIf="item.technicianName">
+        <strong>Technician:</strong>
+        {{ item.technicianName }}
+      </p>
 
-  <div
-    class="status"
-    [ngClass]="{
-      'completed': item.status === 'Completed',
-      'cancelled': item.status === 'Cancelled'
-    }">
-    Status: {{ item.status }}
-  </div>
+      <!-- Problem Description -->
+      <p *ngIf="item.problemDescription">
+        <strong>Problem:</strong>
+        {{ item.problemDescription }}
+      </p>
 
-</div>
+      <!-- Address -->
+      <p *ngIf="item.address">
+        <strong>Address:</strong>
+        {{ item.address }}
+      </p>
+
+      <!-- Status -->
+      <div
+        class="status"
+        [ngClass]="{
+          'completed': item.status === 'Completed',
+          'cancelled': item.status === 'Cancelled',
+          'pending': item.status === 'Pending',
+          'assigned': item.status === 'Assigned',
+          'intransit': item.status === 'In Transit'
+        }">
+
+        Status: {{ item.status }}
+
+      </div>
+
+      <!-- Track Order Button -->
+      <ion-button
+        expand="block"
+        size="small"
+        color="primary"
+        (click)="trackOrder(item.id)">
+
+        Track Order
+
+      </ion-button>
+
+      <!-- Cancel Booking Button -->
+      <ion-button
+        expand="block"
+        color="danger"
+        *ngIf="item.status !== 'Completed' &&
+                 item.status !== 'Cancelled'"
+        (click)="cancelBooking(item.id)">
+
+        Cancel Booking
+
+      </ion-button>
+
+    </div>
+
+    <!-- No Bookings Message -->
+    <div *ngIf="bookings.length === 0" class="no-bookings">
+      No bookings found.
+    </div>
 
   </div>
 

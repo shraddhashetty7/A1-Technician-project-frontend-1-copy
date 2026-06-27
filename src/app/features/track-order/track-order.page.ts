@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-track-order',
@@ -13,11 +15,62 @@ import { Router } from '@angular/router';
     IonicModule
   ]
 })
-export class TrackOrderPage {
+export class TrackOrderPage implements OnInit {
 
-  constructor(private router: Router) {}
+  booking: any;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private bookingService: BookingService
+  ) {}
+getStep(): number {
+
+  switch (this.booking?.status) {
+
+    case 'Assigned':
+      return 1;
+
+    case 'On The Way':
+    case 'In Progress':
+      return 2;
+
+    case 'Completed':
+      return 3;
+
+    default:
+      return 0;
+  }
+}
+getStepClass(step: number) {
+
+  const currentStep = this.getStep();
+
+  return {
+    completed: step < currentStep,
+    active: step === currentStep,
+    pending: step > currentStep
+  };
+}
+  ngOnInit() {
+
+    const id = Number(
+      this.route.snapshot.paramMap.get('id')
+    );
+
+    this.bookingService
+      .getBookingById(id)
+      .subscribe({
+        next: (res) => {
+          this.booking = res;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+  }
 
   goBack() {
-  this.router.navigateByUrl('/tabs/account');
-}
+    this.router.navigateByUrl('/tabs/account');
+  }
 }
