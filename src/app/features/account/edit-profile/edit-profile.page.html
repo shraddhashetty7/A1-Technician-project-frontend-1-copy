@@ -6,6 +6,13 @@
 
 <ion-content class="ion-padding">
 
+  <div class="image-wrapper" (click)="selectImage()">
+    <img [src]="image || 'assets/profile-placeholder.png'" class="profile-img-edit">
+    <div class="camera-badge">
+      <ion-icon name="camera-outline"></ion-icon>
+    </div>
+  </div>
+
   <ion-item>
     <ion-label position="floating">Name</ion-label>
     <ion-input [(ngModel)]="name"></ion-input>
@@ -13,23 +20,20 @@
 
   <ion-item>
     <ion-label position="floating">Phone</ion-label>
-    <ion-input [(ngModel)]="phone"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Profile Image URL</ion-label>
-    <ion-input [(ngModel)]="image"></ion-input>
+    <ion-input [(ngModel)]="phone" type="tel" maxlength="10"></ion-input>
   </ion-item>
 
   <div style="margin-top:20px">
 
-    <ion-button expand="block" color="primary" (click)="save()">
-      Save
-    </ion-button>
+    <div class="buttons">
+  <ion-button expand="block" color="primary" (click)="save()">
+    Save
+  </ion-button>
 
-    <ion-button expand="block" color="medium" (click)="close()">
-      Cancel
-    </ion-button>
+  <ion-button expand="block" color="medium" (click)="close()">
+    Cancel
+  </ion-button>
+</div>
 
   </div>
 

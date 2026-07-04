@@ -1,17 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:host {
+  --bg: #F3F7F6;
+  --card: #FFFFFF;
+  --field: #F0F4F3;
+  --line: #DDE6E4;
+  --teal: #0E7C86;
+  --teal-dim: #0B626A;
+  --coral: #FF7A45;
+  --coral-dim: #E8632F;
+  --text-hi: #16262A;
+  --text-lo: #6B7B7E;
+}
+
+ion-content.tech-login-content {
+  --background: var(--bg);
+}
+
+.scene {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  overflow: hidden;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .login-container {
-  min-height: 100vh;
-  background: #f5f7fb;
-  padding: 60px 20px 20px;
+  position: relative;
+  width: 100%;
+  max-width: 380px;
 }
 
-.logo-section {
+.badge-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px 24px 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(14, 124, 134, 0.08);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 34px 34px 0;
+    border-color: transparent var(--coral) transparent transparent;
+  }
+}
+
+.badge-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+
+  .strip-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .strip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #16A34A;
+    box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+  }
+}
+
+.badge-head {
+  text-align: left;
+  margin-bottom: 26px;
+
+  .badge-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+
+    ion-icon {
+      font-size: 22px;
+      color: #FFFFFF;
+    }
+  }
+
+  h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    color: var(--text-hi);
+    margin: 0 0 4px;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--text-lo);
+    margin: 0;
+  }
+}
+
+.field-group {
+  margin-bottom: 16px;
+}
+
+.field-label {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-lo);
+  margin-bottom: 6px;
+}
+
+.field-input {
+  --background: var(--field);
+  --color: var(--text-hi);
+  --placeholder-color: #9AABA9;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 11px;
+  --padding-bottom: 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.password-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .field-input {
+    flex: 1;
+  }
+
+  .toggle-icon {
+    position: absolute;
+    right: 12px;
+    font-size: 17px;
+    color: var(--text-lo);
+    cursor: pointer;
+  }
+}
+
+.login-btn {
+  margin-top: 20px;
+  --background: var(--coral);
+  --background-activated: var(--coral-dim);
+  --color: #FFFFFF;
+  --border-radius: 6px;
+  --box-shadow: 0 4px 14px rgba(255, 122, 69, 0.35);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  height: 46px;
+
+  span {
+    margin-right: 6px;
+  }
+}
+
+.badge-footer {
+  margin-top: 18px;
   text-align: center;
-  margin-bottom: 30px;
-}
 
-.form-card {
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  .corner-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #A9B8B6;
+  }
 }

@@ -1,39 +1,77 @@
-<ion-header>
+<!-- booking-confirm.page.html -->
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Confirm Booking</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ticket-page">
 
-  <ion-item>
-    <ion-label position="stacked">Name</ion-label>
-    <ion-input [(ngModel)]="booking.customerName"></ion-input>
-  </ion-item>
+  <div class="ticket-hero">
+    <span class="eyebrow">Service Ticket</span>
+    <h1 class="ticket-title">Confirm Your Booking</h1>
+    <p class="ticket-code" *ngIf="booking.serviceType">{{ booking.serviceType }} · Draft</p>
+  </div>
 
-  <ion-item>
-    <ion-label position="stacked">Service</ion-label>
-    <ion-input [(ngModel)]="booking.serviceType" readonly></ion-input>
-  </ion-item>
+  <!-- rest of the page stays the same -->
+    <!-- Customer section -->
+    <div class="field-group">
+      <span class="group-label">Customer</span>
 
-  <ion-item>
-    <ion-label position="stacked">Address</ion-label>
-    <ion-input [(ngModel)]="booking.address"></ion-input>
-  </ion-item>
+      <ion-item class="field-item" lines="none">
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input [(ngModel)]="booking.customerName" placeholder="Full name"></ion-input>
+      </ion-item>
 
-  <ion-datetime
-  presentation="date-time"
-  [(ngModel)]="booking.bookingDate"
-  (ionChange)="onDateChange($event)">
-</ion-datetime>
+      <ion-item class="field-item" lines="none">
+        <ion-label position="stacked">Address</ion-label>
+        <ion-input [(ngModel)]="booking.address" placeholder="Where should we come?"></ion-input>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="stacked">Problem</ion-label>
-    <ion-textarea [(ngModel)]="booking.problemDescription"></ion-textarea>
-  </ion-item>
+    <!-- Perforated ticket divider -->
+    <div class="divider-perforated" aria-hidden="true"></div>
 
-  <ion-button expand="block" (click)="submitBooking()">
-    Confirm Booking
+    <!-- Job section -->
+    <div class="field-group">
+      <span class="group-label">Job Details</span>
+
+      <div class="service-tag">
+        <ion-icon name="construct-outline"></ion-icon>
+        <div class="service-tag-text">
+          <span class="service-tag-label">Service</span>
+          <span class="service-tag-value">{{ booking.serviceType || '—' }}</span>
+        </div>
+      </div>
+
+      <div class="datetime-card">
+        <span class="datetime-label">Date &amp; Time</span>
+        <ion-datetime
+          presentation="date-time"
+          [(ngModel)]="booking.bookingDate"
+          (ionChange)="onDateChange($event)">
+        </ion-datetime>
+        <span class="stamp-badge" *ngIf="booking.bookingDate">Scheduled</span>
+      </div>
+
+      <ion-item class="field-item" lines="none">
+        <ion-label position="stacked">Problem</ion-label>
+        <ion-textarea
+          [(ngModel)]="booking.problemDescription"
+          placeholder="Describe what's going on..."
+          autoGrow="true">
+        </ion-textarea>
+      </ion-item>
+    </div>
+
+  
+
+  <ion-button expand="block" class="btn-confirm" (click)="submitBooking()">
+    <span>Confirm Booking</span>
+    <ion-icon name="arrow-forward" slot="end"></ion-icon>
   </ion-button>
+  <p class="btn-helper">You'll get a confirmation once it's booked.</p>
 
 </ion-content>

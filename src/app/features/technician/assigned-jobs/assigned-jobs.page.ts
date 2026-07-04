@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
+  IonHeader,        // ✅ new
+  IonTitle,         // ✅ new
+  IonToolbar,       // ✅ new
   IonCard,
   IonCardContent,
   IonButton
@@ -23,9 +23,9 @@ import { BookingService } from '../../../services/booking.service';
     CommonModule,
     FormsModule,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
+    IonHeader,        // ✅ new
+    IonTitle,         // ✅ new
+    IonToolbar,       // ✅ new
     IonCard,
     IonCardContent,
     IonButton
@@ -42,13 +42,15 @@ export class AssignedJobsPage implements OnInit {
   }
 
   loadAssignedJobs() {
+    const technicianId = localStorage.getItem('technicianId');
+
     this.bookingService.getBookings().subscribe({
       next: (data: any[]) => {
-
         this.jobs = data.filter(
-          booking => booking.status === 'Assigned'
+          booking =>
+            booking.status?.toLowerCase() === 'assigned' &&
+            booking.technicianId == technicianId
         );
-
         console.log('Assigned Jobs:', this.jobs);
       },
       error: (err) => {
@@ -58,16 +60,9 @@ export class AssignedJobsPage implements OnInit {
   }
 
   updateStatus(job: any, status: string) {
+    const updatedBooking = { ...job, status: status };
 
-    const updatedBooking = {
-      ...job,
-      status: status
-    };
-
-    this.bookingService.updateBooking(
-      job.id,
-      updatedBooking
-    ).subscribe({
+    this.bookingService.updateBooking(job.id, updatedBooking).subscribe({
       next: () => {
         job.status = status;
         console.log('Status Updated Successfully');
@@ -77,5 +72,4 @@ export class AssignedJobsPage implements OnInit {
       }
     });
   }
-
 }

@@ -5,11 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonButton
+  IonButton,
+  IonIcon
 } from '@ionic/angular/standalone';
+
+import { addIcons } from 'ionicons';
+import { clipboardOutline, chevronForwardOutline, logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-technician-dashboard',
@@ -21,27 +22,27 @@ import {
     FormsModule,
     RouterLink,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonButton
+    IonButton,
+    IonIcon
   ]
 })
 export class TechnicianDashboardPage implements OnInit {
 
+  technicianName: string | null = null;
+  technicianId: string | null = null;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.technicianName = localStorage.getItem('technicianName');
+    this.technicianId = localStorage.getItem('technicianId');
   }
 
   logout() {
-    // Remove stored login data
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-
-    console.log('Technician Logged Out');
-
-    // Redirect to technician login page
+    localStorage.removeItem('technicianId');
+    localStorage.removeItem('technicianName');
     this.router.navigate(['/technician-login']);
   }
 

@@ -1,65 +1,77 @@
 <ion-content>
-
   <div class="register-container">
 
     <div class="logo-section">
+      <div class="logo-icon">
+        <ion-icon name="person-add-outline"></ion-icon>
+      </div>
       <h1>Create Account</h1>
       <p>Join us and book services easily</p>
     </div>
 
     <div class="form-card">
 
-      <ion-item>
+      <!-- Step indicators -->
+      <div class="steps">
+        <div class="step active"></div>
+        <div class="step active"></div>
+        <div class="step active"></div>
+      </div>
+
+      <p class="input-label">Full Name</p>
+      <ion-item lines="none">
         <ion-input
-          label="Full Name"
-          labelPlacement="floating">
+          label=""
+          [(ngModel)]="name"
+          placeholder="Enter your full name">
         </ion-input>
       </ion-item>
 
-      <ion-item>
+      <p class="input-label">Mobile Number</p>
+      <ion-item lines="none">
         <ion-input
-          label="Mobile Number"
-          labelPlacement="floating">
+          type="tel"
+          label=""
+          [(ngModel)]="phone"
+          placeholder="Enter your mobile number">
         </ion-input>
       </ion-item>
 
-      <ion-item>
+      <p class="input-label">Email Address</p>
+      <ion-item lines="none">
         <ion-input
           type="email"
-          label="Email"
-          labelPlacement="floating">
+          label=""
+          [(ngModel)]="email"
+          placeholder="Enter your email">
         </ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-input
-          type="password"
-          label="Create Password"
-          labelPlacement="floating">
-        </ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input
-          type="password"
-          label="Confirm Password"
-          labelPlacement="floating">
-        </ion-input>
-      </ion-item>
-
-      <ion-button expand="block" class="register-btn">
-        Register
+      <ion-button
+        expand="block"
+        class="register-btn"
+        (click)="register()">
+        CREATE ACCOUNT
       </ion-button>
+
+      <div class="divider">
+        <span>already a member?</span>
+      </div>
 
       <ion-button
         fill="clear"
         expand="block"
         routerLink="/customer-login">
-        Already have an account? Login
+        Login to your account
       </ion-button>
+
+      <p class="privacy-note">
+        By registering, you agree to our
+        <a href="#">Terms of Service</a> and
+        <a href="#">Privacy Policy</a>
+      </p>
 
     </div>
 
   </div>
-
 </ion-content>

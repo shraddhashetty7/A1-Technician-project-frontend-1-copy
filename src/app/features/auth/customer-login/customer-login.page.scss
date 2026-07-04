@@ -1,16 +1,150 @@
+ion-content {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 .login-container {
-  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
 }
 
-h1 {
+// ─── LOGO SECTION ───
+.logo-section {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+
+  .logo-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+
+    ion-icon {
+      font-size: 40px;
+      color: white;
+    }
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 8px;
+    letter-spacing: -0.5px;
+  }
+
+  p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
 }
 
+// ─── FORM CARD ───
+.form-card {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  border-radius: 24px;
+  padding: 32px 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 4px;
+  }
+
+  .card-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 24px;
+  }
+}
+
+// ─── INPUT ───
 ion-item {
-  margin-bottom: 15px;
+  --background: #f8fafc;
+  --border-radius: 12px;
+  --border-color: #e2e8f0;
+  --border-width: 1.5px;
+  --border-style: solid;
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  --highlight-color-focused: #667eea;
+  border-radius: 12px;
+  margin-bottom: 20px;
+
+  ion-input {
+    --color: #1e293b;
+    --placeholder-color: #94a3b8;
+    font-size: 15px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+  }
 }
 
+// ─── LOGIN BUTTON ───
 ion-button {
-  margin-top: 15px;
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --background-hover: linear-gradient(135deg, #5a6fd6 0%, #6a4292 100%);
+  --border-radius: 12px;
+  --box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  height: 52px;
+}
+
+// ─── REGISTER LINK ───
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #64748b;
+
+  a {
+    color: #667eea;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ─── DIVIDER ───
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+
+  span {
+    font-size: 13px;
+    color: #94a3b8;
+    white-space: nowrap;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e2e8f0;
+  }
 }

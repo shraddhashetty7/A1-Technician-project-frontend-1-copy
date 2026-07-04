@@ -1,0 +1,296 @@
+// booking-confirm.page.scss
+
+// Add once in index.html or global.scss:
+// https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap
+
+:host {
+  --ink: #2A3444;
+  --paper: #FBF8F3;
+  --medium: #7C94A0;      // soft harbor blue — the medium-shade hero tone
+  --medium-deep: #5F7885;
+  --medium-tint: #EAF0F1;
+  --brass: #C0915C;
+  --brass-light: #E4BE8E;
+  --brass-deep: #9C7043;
+  --slate: #6B7686;
+  --line: #E4DED2;
+  --success: #6B8F76;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes stampPop {
+  0%   { opacity: 0; transform: rotate(-4deg) scale(0.6); }
+  70%  { opacity: 1; transform: rotate(-4deg) scale(1.08); }
+  100% { opacity: 1; transform: rotate(-4deg) scale(1); }
+}
+
+ion-toolbar {
+  --background: var(--paper);
+  --color: var(--ink);
+}
+
+.ticket-page {
+  --background: var(--paper);
+  background-image: radial-gradient(rgba(124, 148, 160, 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+// ---- Hero: light-medium band ----
+.ticket-hero {
+  position: relative;
+  padding: 32px 22px 30px;
+  background: linear-gradient(160deg, var(--medium) 0%, var(--medium-deep) 100%);
+  animation: fadeUp 0.5s ease-out both;
+
+  .eyebrow {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass-light);
+    margin-bottom: 8px;
+  }
+
+  .ticket-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 29px;
+    line-height: 1.15;
+    color: #fff;
+    margin: 0 0 8px;
+  }
+
+  .ticket-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -13px;
+    height: 14px;
+    background:
+      linear-gradient(135deg, var(--medium-deep) 25%, transparent 25%) 0 0,
+      linear-gradient(225deg, var(--medium-deep) 25%, transparent 25%) 0 0;
+    background-size: 18px 18px;
+    background-repeat: repeat-x;
+  }
+}
+
+// ---- Card shell ----
+.ticket-card {
+  position: relative;
+  margin: 12px 16px 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(42, 52, 68, 0.04),
+    0 12px 28px -16px rgba(95, 120, 133, 0.28);
+  animation: fadeUp 0.55s ease-out 0.08s both;
+}
+
+.field-group {
+  padding: 22px 20px 8px;
+
+  .group-label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 12px;
+  }
+}
+
+// ---- Perforated divider ----
+.divider-perforated {
+  position: relative;
+  height: 1px;
+  margin: 4px 0 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line) 0,
+    var(--line) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    width: 16px;
+    height: 16px;
+    background: var(--paper);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+  &::before { left: -8px; }
+  &::after { right: -8px; }
+}
+
+// ---- Form fields ----
+.field-item {
+  --background: transparent;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --highlight-color-focused: var(--medium-deep);
+  --highlight-height: 2px;
+  margin-bottom: 8px;
+  transition: transform 0.15s ease;
+
+  ion-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px !important;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--slate) !important;
+  }
+
+  ion-input,
+  ion-textarea {
+    --color: var(--ink);
+    --placeholder-color: #B3ADA1;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+
+  &.item-has-focus {
+    transform: translateX(2px);
+  }
+}
+
+// ---- Read-only service tag ----
+.service-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--medium-tint);
+  border: 1px solid rgba(124, 148, 160, 0.35);
+  border-radius: 10px;
+  margin-bottom: 16px;
+
+  ion-icon {
+    font-size: 20px;
+    color: var(--medium-deep);
+    flex-shrink: 0;
+  }
+
+  .service-tag-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-tag-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--medium-deep);
+    margin-bottom: 2px;
+  }
+
+  .service-tag-value {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+}
+
+// ---- Datetime ----
+.datetime-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 8px 4px;
+  margin-bottom: 18px;
+  background: linear-gradient(180deg, #fff, #fdfbf7);
+
+  .datetime-label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    padding: 0 8px 8px;
+  }
+
+  ion-datetime {
+    --background: transparent;
+    width: 100%;
+
+    &::part(calendar-day) {
+      border-radius: 8px;
+    }
+    &::part(calendar-day active) {
+      background: var(--brass);
+      color: #fff;
+    }
+  }
+
+  .stamp-badge {
+    position: absolute;
+    top: -11px;
+    right: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--success);
+    padding: 4px 9px;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+    animation: stampPop 0.4s ease-out both;
+  }
+}
+
+// ---- Submit ----
+.btn-confirm {
+  margin: 26px 16px 4px;
+  --background: linear-gradient(135deg, var(--brass), var(--brass-deep));
+  --background-activated: var(--brass-deep);
+  --background-hover: var(--brass-deep);
+  --border-radius: 12px;
+  --box-shadow: 0 6px 16px -4px rgba(156, 112, 67, 0.4);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  height: 52px;
+  transition: transform 0.15s ease;
+
+  ion-icon {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover ion-icon {
+    transform: translateX(3px);
+  }
+}
+
+.btn-helper {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--slate);
+  margin: 0 0 24px;
+}

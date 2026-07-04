@@ -1,36 +1,50 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Assigned Jobs</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
 
   <ion-card *ngFor="let job of jobs">
-
     <ion-card-content>
 
       <h2>{{ job.customerName }}</h2>
+      <hr class="divider">
 
-      <p><strong>Service:</strong> {{ job.serviceType }}</p>
+      <p><strong>📞 Phone:</strong> {{ job.customerPhone || 'Not provided' }}</p>
+      <p><strong>📧 Email:</strong> {{ job.customerEmail || 'Not provided' }}</p>
+      <p><strong>🔧 Service:</strong> {{ job.serviceType }}</p>
+      <p><strong>📍 Address:</strong> {{ job.address }}</p>
 
-      <p><strong>Address:</strong> {{ job.address }}</p>
+      <span class="status-badge"
+        [class.assigned]="job.status === 'Assigned'"
+        [class.in-progress]="job.status === 'In Progress'"
+        [class.completed]="job.status === 'Completed'">
+        {{ job.status }}
+      </span>
 
-      <p><strong>Status:</strong> {{ job.status }}</p>
       <ion-button
-  size="small"
-  (click)="updateStatus(job, 'In Progress')">
-  Start Work
-</ion-button>
+        *ngIf="job.latitude && job.longitude"
+        expand="block"
+        color="tertiary"
+        [href]="'https://www.google.com/maps/dir/?api=1&destination=' + job.latitude + ',' + job.longitude"
+        target="_blank">
+        📍 Navigate to Customer
+      </ion-button>
 
-<ion-button
-  size="small"
-  (click)="updateStatus(job, 'Completed')">
-  Complete Work
-</ion-button>
+      <hr class="divider">
+
+      <div class="action-buttons">
+        <ion-button size="small" color="warning" (click)="updateStatus(job, 'In Progress')">
+          ▶ Start Work
+        </ion-button>
+        <ion-button size="small" color="success" (click)="updateStatus(job, 'Completed')">
+          ✔ Complete
+        </ion-button>
+      </div>
 
     </ion-card-content>
-
   </ion-card>
 
 </ion-content>

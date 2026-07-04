@@ -1,4 +1,110 @@
-.buttons
-{
-margin-top:20px;
+// ==========================================
+// PAGE BACKGROUND
+// ==========================================
+ion-content {
+  --background: linear-gradient(180deg, #eef4ff 0%, #f7f9fc 40%, #ffffff 100%);
+}
+
+ion-toolbar {
+  --background: #5b9df9;
+  --color: #fff;
+}
+
+// ==========================================
+// PROFILE IMAGE + BG IMAGE RING
+// ==========================================
+.image-wrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin: 30px auto 25px;
+  border-radius: 50%;
+
+  // the bg image sits as a decorative ring around/behind the profile pic
+  background: url('/assets/images/bg-edit-profile.png') center/cover no-repeat;
+  padding: 6px;                     // controls how much of the ring shows
+  box-shadow: 0 6px 18px rgba(91, 157, 249, 0.35);
+
+  .profile-img-edit {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;         // separates photo from the bg ring
+    display: block;
+  }
+
+  .camera-badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #5b9df9;            // solid medium blue, clean look
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    ion-icon {
+      font-size: 20px;
+      color: #fff;
+    }
+  }
+}
+
+// ==========================================
+// FORM FIELDS
+// ==========================================
+ion-item {
+  --background: #ffffff;
+  --border-radius: 12px;
+  --border-color: transparent;
+  --highlight-color-focused: #5b9df9;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  ion-label {
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  ion-input {
+    --color: #1f2937;
+    font-weight: 500;
+  }
+}
+
+// ==========================================
+// BUTTONS
+// ==========================================
+.buttons {
+  margin-top: 28px;
+
+  ion-button {
+    --border-radius: 12px;
+    height: 48px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.3px;
+  }
+
+  ion-button[color="primary"] {
+    --background: linear-gradient(90deg, #5b9df9, #7c6ff6);
+    --background-activated: linear-gradient(90deg, #4d8ff0, #6c5ce8);
+    --box-shadow: 0 4px 14px rgba(91, 157, 249, 0.4);
+  }
+
+  ion-button[color="medium"] {
+    --background: #ffffff;
+    --color: #6b7280;
+    --border-width: 1px;
+    --border-color: #e5e7eb;
+    --border-style: solid;
+    --box-shadow: none;
+  }
 }

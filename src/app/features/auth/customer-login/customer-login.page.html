@@ -1,36 +1,41 @@
-<ion-content class="ion-padding">
-
+<ion-content>
   <div class="login-container">
 
-    <h1>Customer Login</h1>
+    <div class="logo-section">
+      <div class="logo-icon">
+        <ion-icon name="phone-portrait-outline"></ion-icon>
+      </div>
+      <h1>Welcome Back!</h1>
+      <p>Access Your Bookings</p>
+    </div>
 
-    <ion-item>
-      <ion-input
-        label="Mobile Number"
-        labelPlacement="floating">
-      </ion-input>
-    </ion-item>
+    <div class="form-card">
+      <h2 class="card-title">Customer Login</h2>
+      <p class="card-subtitle">Enter your registered phone number</p>
 
-    <ion-item>
-      <ion-input
-        type="password"
-        label="Password"
-        labelPlacement="floating">
-      </ion-input>
-    </ion-item>
+      <ion-item lines="none">
+        <ion-input
+          type="tel"
+          label="Phone Number"
+          labelPlacement="floating"
+          [(ngModel)]="phone"
+          placeholder="e.g. 9876543210">
+        </ion-input>
+      </ion-item>
 
-   <ion-button
-  expand="block"
-  routerLink="/tabs/home">
-  Login
-</ion-button>
+      <ion-button expand="block" (click)="login()">
+        LOGIN
+      </ion-button>
 
-    <ion-button
-  fill="clear"
-  expand="block"
-  routerLink="/customer-register">
-  New User? Register Here
-</ion-button>
+      <div class="divider">
+        <span>New to our app?</span>
+      </div>
+
+      <p class="register-link">
+        Don't have an account?
+        <a routerLink="/customer-register">Register Now</a>
+      </p>
+    </div>
+
   </div>
-
 </ion-content>

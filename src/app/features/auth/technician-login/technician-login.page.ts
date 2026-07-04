@@ -25,11 +25,10 @@ import { eyeOutline, eyeOffOutline } from 'ionicons/icons';
     CommonModule,
     FormsModule,
     IonContent,
-    IonItem,
     IonInput,
     IonButton,
     IonIcon
-  ]
+]
 })
 export class TechnicianLoginPage {
 
@@ -61,6 +60,8 @@ export class TechnicianLoginPage {
           this.authService.saveAuthData(res.token, res.role);
 
           if (res.role === 'Technician') {
+            localStorage.setItem('technicianId', res.id);      // ✅ new
+            localStorage.setItem('technicianName', res.name);  // ✅ new
             this.router.navigate(['/technician-dashboard']);
           } else {
             alert('You are not a Technician');

@@ -1,15 +1,12 @@
 <ion-header>
   <ion-toolbar class="no-shadow-header">
-
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
         <ion-icon name="chevron-back-outline" slot="start"></ion-icon>
         Back
       </ion-button>
     </ion-buttons>
-
     <ion-title class="header-title">Saved Address</ion-title>
-
   </ion-toolbar>
 </ion-header>
 
@@ -18,11 +15,26 @@
   <ion-card>
     <ion-card-content>
 
-      <!-- Full Name -->
-      <ion-item>
-        <ion-label position="floating">Full Name</ion-label>
-        <ion-input [(ngModel)]="address.name"></ion-input>
-      </ion-item>
+      <!-- ✅ Address Type Toggle -->
+      <div class="address-type-row">
+        <span class="address-type-label">Address Type</span>
+        <div class="address-type-buttons">
+          <button
+            class="type-btn"
+            [class.active]="address.addressType === 'Home'"
+            (click)="address.addressType = 'Home'">
+            🏠 Home
+          </button>
+          <button
+            class="type-btn"
+            [class.active]="address.addressType === 'Other'"
+            (click)="address.addressType = 'Other'">
+            📍 Other
+          </button>
+        </div>
+      </div>
+
+      
 
       <!-- Address Line 1 -->
       <ion-item>
@@ -42,40 +54,35 @@
         <ion-input [(ngModel)]="address.line3"></ion-input>
       </ion-item>
 
-      
       <!-- Pin Code -->
 <ion-item>
   <ion-label position="floating">Pin Code</ion-label>
-  <ion-input
-    type="number"
-    maxlength="6"
-    [(ngModel)]="address.pin">
-  </ion-input>
+  <ion-input type="text" inputmode="numeric" maxlength="6" [(ngModel)]="address.pin"></ion-input>
 </ion-item>
 <p class="pin-note">
   Supported Areas: 576104, 576101, 576102, 576103, 576105, 576108, 576213
 </p>
 
-      <!-- Phone -->
-      <ion-item>
-        <ion-label position="floating">Phone Number</ion-label>
-        <ion-input type="tel" [(ngModel)]="address.phone"></ion-input>
-      </ion-item>
-
-      <!-- Email -->
-      <ion-item>
-        <ion-label position="floating">Email Address</ion-label>
-        <ion-input type="email" [(ngModel)]="address.email"></ion-input>
-      </ion-item>
-
+      
       <!-- Share Location -->
-      <ion-button expand="block" fill="outline" class="location-btn">
-        📍 Share Service Location
-      </ion-button>
+<ion-button expand="block" fill="outline" class="location-btn" (click)="shareLocation()">
+  📍 {{ locationCaptured ? 'Location Captured ✅' : 'Share Service Location' }}
+</ion-button>
+
+<!-- ✅ Map Preview -->
+<div *ngIf="locationCaptured" class="map-preview">
+  <iframe
+    [src]="getMapUrl()"
+    width="100%"
+    height="200"
+    style="border-radius: 12px; border: none; margin-top: 10px;"
+    allowfullscreen>
+  </iframe>
+</div>
 
       <!-- Save -->
-      <ion-button expand="block" (click)="saveAddress()">
-        Save Address
+      <ion-button expand="block" (click)="saveAddress()" [disabled]="isSaving">
+        {{ isSaving ? 'Saving...' : 'Save Address' }}
       </ion-button>
 
     </ion-card-content>

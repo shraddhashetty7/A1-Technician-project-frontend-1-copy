@@ -1,17 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:host {
+  --bg: #F5F6FB;
+  --surface: #FFFFFF;
+  --surface-2: #F7F8FD;
+  --line: #E4E6F3;
+  --indigo: #4F46E5;
+  --indigo-dim: #4338CA;
+  --text-hi: #1E1B2E;
+  --text-lo: #6B7280;
+}
+
+ion-content {
+  --background: var(--bg);
+}
+
 .login-container {
-  min-height: 100vh;
-  background: #f5f7fb;
-  padding: 60px 20px 20px;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,70,229,0.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
 }
 
 .logo-section {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto 20px;
   text-align: center;
-  margin-bottom: 30px;
+
+  h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--text-hi);
+    margin: 0 0 6px;
+  }
+
+  p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--text-lo);
+    margin: 0;
+  }
 }
 
 .form-card {
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 20px;
+  box-shadow: 0 12px 32px rgba(30, 27, 46, 0.08);
+
+  ion-item {
+    --background: var(--surface-2);
+    --border-color: var(--line);
+    --border-width: 1px;
+    --border-style: solid;
+    --highlight-height: 0px;
+    --padding-start: 14px;
+    --inner-padding-end: 10px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+
+    ion-input {
+      --color: var(--text-hi);
+      --placeholder-color: #A6A9C4;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+
+    ion-button[fill="clear"] {
+      --color: var(--text-lo);
+      margin: 0;
+    }
+  }
+
+  ion-button:not([fill="clear"]) {
+    margin-top: 8px;
+    --background: var(--indigo);
+    --background-activated: var(--indigo-dim);
+    --color: #FFFFFF;
+    --border-radius: 10px;
+    --box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    height: 48px;
+  }
 }

@@ -1,52 +1,72 @@
-.custom-header ion-toolbar {
-  --background: linear-gradient(135deg, #4facfe, #00f2fe);
-  --color: #ffffff;
-  --border-width: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.custom-header ion-title {
-  font-size: 25px;
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: 0.5px;
-}
-
-/* Optional: add padding for better spacing */
-.custom-header {
-  padding-top: 5px;
-}
 /* ✅ Background Image */
 ion-content {
   --background: url('/assets/images/bg-save-address.png') no-repeat center center / cover;
 }
 
+/* ✅ Glassmorphism Card */
 ion-card {
-  background: rgba(255, 255, 255, 0.6); /* more transparent */
-  backdrop-filter: blur(5px); /* glass effect 🔥 */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-
-/* Existing styles (kept as-is) */
+/* ✅ Make ion-items transparent inside the glass card */
 ion-item {
   --background: transparent;
-  margin-bottom: 10px;
+  --border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Make labels and inputs readable on glass */
+ion-label {
+  color: rgba(0, 0, 0, 0.8) !important;
 }
 
 ion-input {
+  color: black !important;
+  --placeholder-color: rgba(0, 0, 0, 0.4);
+}
+
+.address-type-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0 16px 0;
+  padding: 0 4px;
+}
+
+.address-type-label {
   font-size: 14px;
-}
-
-/* Location button */
-.location-btn {
-  margin-top: 15px;
-  --border-radius: 10px;
-}
-
-/* Save button */
-.save-btn {
-  margin-top: 12px;
-  --background: #4caf50;
-  --border-radius: 10px;
   font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.address-type-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.type-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  color: black;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &.active {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--ion-color-primary);
+  }
+}
+
+.pin-note {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 4px 16px 8px;
 }

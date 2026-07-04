@@ -1,10 +1,244 @@
-ion-button {
-  margin-top: 5px;
-  margin-bottom: 5px;
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:host {
+  --bg: #F5F6FB;
+  --surface: #FFFFFF;
+  --surface-2: #F7F8FD;
+  --line: #E4E6F3;
+  --indigo: #4F46E5;
+  --violet-soft: #EEF0FF;
+  --success: #15803D;
+  --success-bg: #DCFCE7;
+  --warn: #B45309;
+  --warn-bg: #FEF3C7;
+  --danger: #DC2626;
+  --danger-bg: #FEE2E2;
+  --text-hi: #1E1B2E;
+  --text-lo: #6B7280;
 }
 
-.tech-btn {
-  width: 100%;
-  margin-bottom: 8px;
-  font-size: 16px;
+ion-content {
+  --background: var(--bg);
+}
+
+h1 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--text-hi);
+  margin: 4px 0 12px;
+}
+
+// "Total Bookings" / "Total Technicians" pills
+ion-content > p {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--indigo);
+  background: var(--violet-soft);
+  border-radius: 20px;
+  padding: 6px 14px;
+  margin: 0 8px 16px 0;
+}
+
+h2 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-lo);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+}
+
+ion-card {
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(30, 27, 46, 0.08);
+  border: 1px solid var(--line);
+  margin: 0 0 18px;
+  overflow: hidden;
+
+  ion-card-content {
+    padding: 20px;
+
+    // Customer name heading
+    h2 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-hi);
+      text-transform: none;
+      letter-spacing: normal;
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--indigo);
+        margin-right: 8px;
+        flex-shrink: 0;
+      }
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--text-lo);
+      margin: 0 0 7px;
+      line-height: 1.5;
+
+      strong {
+        color: var(--text-hi);
+        font-weight: 600;
+        margin-right: 4px;
+      }
+    }
+
+    small {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-lo);
+    }
+
+    // Status badge
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--surface-2);
+      color: var(--text-lo);
+
+      &[data-status="Pending"] {
+        background: var(--warn-bg);
+        color: var(--warn);
+      }
+      &[data-status="Assigned"] {
+        background: var(--violet-soft);
+        color: var(--indigo);
+      }
+      &[data-status="Completed"] {
+        background: var(--success-bg);
+        color: var(--success);
+      }
+      &[data-status="Cancelled"] {
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+    }
+
+    h3 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text-lo);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 18px 0 10px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+
+    // Navigate to customer button
+    a {
+      display: block;
+      text-decoration: none;
+      margin: 10px 0;
+
+      ion-button {
+        --border-radius: 10px;
+        --box-shadow: none;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: none;
+        height: 42px;
+
+        ion-icon {
+          font-size: 16px;
+        }
+      }
+    }
+
+    // Technician selection buttons
+    ion-button[expand="block"]:not([color]) {
+      --background: var(--surface-2);
+      --background-activated: var(--violet-soft);
+      --color: var(--text-hi);
+      --box-shadow: none;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      text-transform: none;
+      --padding-top: 10px;
+      --padding-bottom: 10px;
+
+      ion-icon {
+        font-size: 18px;
+        color: var(--indigo);
+      }
+
+      .tech-spec {
+        display: block;
+        font-size: 11px;
+        color: var(--text-lo);
+        font-weight: 400;
+        margin-top: 1px;
+      }
+    }
+
+    // Assign / Complete pill buttons
+    ion-button[size="small"] {
+      --border-radius: 20px;
+      --box-shadow: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: none;
+      margin: 4px 8px 4px 0;
+
+      ion-icon {
+        font-size: 15px;
+      }
+    }
+
+    ion-button[size="small"]:first-of-type {
+      --background: var(--violet-soft);
+      --color: var(--indigo);
+    }
+
+    ion-button[size="small"]:nth-of-type(2) {
+      --background: var(--success-bg);
+      --color: var(--success);
+    }
+
+    // Logout
+    ion-button[color="danger"] {
+      margin-top: 18px;
+      --border-radius: 10px;
+      --box-shadow: none;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      text-transform: none;
+      height: 46px;
+
+      ion-icon {
+        font-size: 17px;
+      }
+    }
+  }
 }
