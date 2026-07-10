@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-plumbing',
@@ -26,17 +27,19 @@ export class PlumbingPage implements OnInit {
     { name: 'Bathroom Plumbing', icon: 'bathroom.png', selected: false },
     { name: 'Shower Installation', icon: 'shower.png', selected: false },
     { name: 'Water Tank Cleaning', icon: 'water-tank.png', selected: false },
-    { name: 'Pipe Installation', icon: 'pipe.jpg', selected: false },
+    { name: 'Pipe Installation', icon: 'pipe.png', selected: false },
     { name: 'Leakage Repair', icon: 'leak.png', selected: false },
-    { name: 'Sewer Cleaning', icon: 'sewer.png', selected: false },
-    { name: 'Tap / Faucet Repair', icon: 'tap.png', selected: false }
+    { name: 'Tap / Faucet Repair', icon: 'tap.png', selected: false },
+    { name: 'Other', icon: 'plumber.png', selected: false },
   ];
 
   // ✅ Cart
   cart: any[] = [];
 
-  constructor(private router: Router) {}
-
+  constructor(
+  private router: Router,
+  private authService: AuthService
+) {}
   ngOnInit() {}
 
   // ✅ Auto update cart when checkbox changes
@@ -53,21 +56,30 @@ export class PlumbingPage implements OnInit {
 
   // ✅ Book Now (Final Navigation)
   bookNow() {
-    // Ensure cart is updated
-    this.updateCart();
+  this.updateCart();
+  const selectedServices = this.getSelectedServiceNames();
 
-    const selectedServices = this.getSelectedServiceNames();
+  if (!selectedServices) {
+    alert('Please select at least one service');
+    return;
+  }
 
-    if (!selectedServices) {
-      alert('Please select at least one service');
-      return;
-    }
-
-    this.router.navigate(['/tabs/saved-address'], {
+  if (!this.authService.isLoggedIn()) {
+    this.router.navigate(['/customer-login'], {
       queryParams: {
+        returnUrl: '/tabs/saved-address',
         service: selectedServices,
         complaint: this.complaintText
       }
     });
+    return;
   }
+
+  this.router.navigate(['/tabs/saved-address'], {
+    queryParams: {
+      service: selectedServices,
+      complaint: this.complaintText
+    }
+  });
+}
 }

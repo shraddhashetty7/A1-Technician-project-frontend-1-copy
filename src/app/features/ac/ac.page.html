@@ -78,26 +78,13 @@
 
 
   <!-- Book Service -->
-   <ion-button
-  expand="block"
-  class="ac-btn"
-  [routerLink]="['/tabs/saved-address']"
-  [queryParams]="{
-    service: getSelectedServices(),
-    complaint: complaintText
-  }">
-
-
-  ❄️ Book AC Service
-
-
-</ion-button>
-</div> <!-- ✅ THIS WAS MISSING -->
-
+  <!-- BOOK BUTTON -->
+    <ion-button expand="block" (click)="bookNow()">
+      Book Service
+    </ion-button>
 
 
 
 
 
  
-</ion-content>

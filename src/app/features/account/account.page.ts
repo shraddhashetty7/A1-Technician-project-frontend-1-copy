@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
 import { EditProfilePage } from './edit-profile/edit-profile.page';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth.service'; // adjust path to match your project
 
 @Component({
   selector: 'app-account',
@@ -17,20 +20,28 @@ import { EditProfilePage } from './edit-profile/edit-profile.page';
 })
 export class AccountPage implements OnInit {
 
-  name: string = 'Shraddha Shetty';
-  phone: string = '+91 9876543210';
+  name: string = '';
+  phone: string = '';
   image: string = 'assets/profile.png';
 
-  constructor(private router: Router, private modalCtrl: ModalController) {}
+  constructor(
+    private router: Router,
+    private modalCtrl: ModalController,
+    private http: HttpClient,
+    private authService: AuthService // ✅ NEW
+  ) {}
 
   ngOnInit() {
-    // load saved profile if it exists
+    // ✅ CHANGED: load the REAL logged-in customer's info first
+    this.name = localStorage.getItem('customerName') || '';
+    this.phone = localStorage.getItem('customerPhone') || '';
+
+    // Then apply any local profile customization (e.g. custom photo)
+    // on top of it, without overwriting name/phone from a stale value.
     const saved = localStorage.getItem('user_profile');
     if (saved) {
       const data = JSON.parse(saved);
-      this.name = data.name;
-      this.phone = data.phone;
-      this.image = data.image;
+      if (data.image) this.image = data.image;
     }
   }
 
@@ -53,14 +64,30 @@ export class AccountPage implements OnInit {
       this.phone = data.phone;
       this.image = data.image;
 
-      // persist so it survives app reload
       localStorage.setItem('user_profile', JSON.stringify(data));
     }
   }
 
-  goToTrackOrder() {
-    this.router.navigate(['/tabs/track-order']);
+  async goToTrackOrder() {
+  const customerId = Number(localStorage.getItem('customerId'));
+
+  if (!customerId) {
+    this.router.navigate(['/customer-login']);
+    return;
   }
+
+  this.http.get<any>(`${environment.apiUrl}/api/customer/track/${customerId}`)
+    .subscribe({
+      next: (res) => {
+        const bookingId = res?.ActiveBooking?.Id ?? 0;
+        this.router.navigate(['/tabs/track-order', bookingId]);
+      },
+      error: (err) => {
+        console.log(err);
+        this.router.navigate(['/tabs/track-order', 0]);
+      }
+    });
+}
 
   goToBookingHistory() {
     this.router.navigateByUrl('/tabs/booking');
@@ -74,7 +101,11 @@ export class AccountPage implements OnInit {
     this.router.navigate(['/tabs/review']);
   }
 
+  // ✅ FIXED: previously only navigated, never cleared any session data.
+  // Now delegates to AuthService.logout(), which clears localStorage +
+  // sessionStorage and does a full page reload to reset all in-memory state.
   logout() {
-    this.router.navigate(['/role-selection']);
-  }
+  this.authService.logout(); // clears token, customerId, customerName, etc.
+  this.router.navigate(['/tabs/home'], { replaceUrl: true });
+}
 }

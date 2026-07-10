@@ -22,8 +22,19 @@ export class SavedAddressPage implements OnInit {
 
   private apiBase = 'https://localhost:7122/api/customer';
 
+  // ✅ NEW: all addresses for this customer (Home, Office, Other x N)
+  savedAddresses: any[] = [];
+
+  // ✅ NEW: which tab is active
+  selectedType: 'Home' | 'Office' | 'Other' = 'Home';
+
+  // ✅ NEW: when editing an existing "Other" address, holds its id
+  editingId: number | null = null;
+
   address = {
+    id: 0 as number | null,      // ✅ after
     addressType: 'Home',
+    label: 'Home',        // shown/edited only for "Other"
     name: '',
     line1: '',
     line2: '',
@@ -57,37 +68,108 @@ export class SavedAddressPage implements OnInit {
     this.address.phone = localStorage.getItem('customerPhone') || '';
     this.address.email = localStorage.getItem('customerEmail') || '';
 
-    this.loadSavedAddress();
+    this.loadAllAddresses();
   }
 
-  loadSavedAddress() {
+  // ✅ Replaces loadSavedAddress() — now loads a LIST
+  loadAllAddresses() {
     const customerId = localStorage.getItem('customerId');
     if (!customerId) return;
 
-    this.http.get<any>(`${this.apiBase}/address/${customerId}`)
+    this.http.get<any[]>(`${this.apiBase}/addresses/${customerId}`)
       .subscribe({
-        next: (savedAddress) => {
-          if (savedAddress) {
-            this.address = {
-              addressType: savedAddress.addressType || 'Home',
-              name: savedAddress.name || this.address.name,
-              line1: savedAddress.line1 || '',
-              line2: savedAddress.line2 || '',
-              line3: savedAddress.line3 || '',
-              pin: savedAddress.pin || '',
-              phone: savedAddress.phone || this.address.phone,
-              email: savedAddress.email || this.address.email,
-              latitude: savedAddress.latitude || null,
-              longitude: savedAddress.longitude || null
-            };
-
-            if (savedAddress.latitude && savedAddress.longitude) {
-              this.locationCaptured = true;
-            }
-          }
+        next: (list) => {
+          this.savedAddresses = list || [];
+          this.selectType('Home'); // default view
         },
         error: () => {}
       });
+  }
+
+ selectType(type: 'Home' | 'Office' | 'Other') {
+    this.selectedType = type;
+    this.editingId = null;
+    this.locationCaptured = false;
+
+    const existing = this.savedAddresses.find(a => a.addressType === type);
+    if (existing) {
+      this.loadIntoForm(existing);
+    } else {
+      this.resetForm(type);
+    }
+  }
+  
+  // ✅ NEW: user taps "+ Add New Other Address"
+  addNewOther() {
+    this.editingId = null;
+    this.resetForm('Other');
+    this.address.label = ''; // force them to name it
+  }
+
+  // ✅ NEW: user taps edit on an existing "Other" entry
+  editOther(addr: any) {
+    this.editingId = addr.id;
+    this.loadIntoForm(addr);
+  }
+
+  // ✅ NEW: delete an "Other" address
+  deleteOther(addr: any) {
+    if (!confirm(`Delete "${addr.label}"?`)) return;
+
+    const customerId = localStorage.getItem('customerId');
+    if (!customerId) return;
+
+    // ✅ CHANGED: DELETE now needs both customerId and addressId in the URL
+    this.http.delete(`${this.apiBase}/address/${customerId}/${addr.id}`)
+      .subscribe({
+        next: () => {
+          this.savedAddresses = this.savedAddresses.filter(a => a.id !== addr.id);
+          this.resetForm('Other');
+        },
+        error: () => alert('Failed to delete address.')
+      });
+}
+
+  private loadIntoForm(saved: any) {
+    this.address = {
+      id: saved.id,
+      addressType: saved.addressType,
+      label: saved.label || saved.addressType,
+      name: saved.name || this.address.name,
+      line1: saved.line1 || '',
+      line2: saved.line2 || '',
+      line3: saved.line3 || '',
+      pin: saved.pin || '',
+      phone: saved.phone || this.address.phone,
+      email: saved.email || this.address.email,
+      latitude: saved.latitude || null,
+      longitude: saved.longitude || null
+    };
+    this.locationCaptured = !!(saved.latitude && saved.longitude);
+    this.editingId = saved.id;
+  }
+
+  private resetForm(type: 'Home' | 'Office' | 'Other') {
+    this.address = {
+      id: 0,
+      addressType: type,
+      label: type === 'Other' ? '' : type,
+      name: localStorage.getItem('customerName') || '',
+      line1: '',
+      line2: '',
+      line3: '',
+      pin: '',
+      phone: localStorage.getItem('customerPhone') || '',
+      email: localStorage.getItem('customerEmail') || '',
+      latitude: null,
+      longitude: null
+    };
+    this.locationCaptured = false;
+  }
+
+  // ✅ Only "Other" list entries that aren't currently being edited/blank
+  get otherAddresses() {
+    return this.savedAddresses.filter(a => a.addressType === 'Other');
   }
 
   shareLocation() {
@@ -119,34 +201,42 @@ export class SavedAddressPage implements OnInit {
   }
 
   saveAddress() {
-  this.address.pin = this.address.pin.toString();
+    this.address.pin = this.address.pin.toString();
 
-  if (!this.address.line1) {
-    alert('Please fill Address Line 1');
-    return;
-  }
+    if (!this.address.line1) {
+      alert('Please fill Address Line 1');
+      return;
+    }
 
-  if (!this.allowedPins.includes(this.address.pin)) {
-    alert('Service is available only for selected Udupi & Manipal areas.');
-    return;
-  }
+    if (!this.allowedPins.includes(this.address.pin)) {
+      alert('Service is available only for selected Udupi & Manipal areas.');
+      return;
+    }
 
-  const customerId = localStorage.getItem('customerId');
-  if (!customerId) {
-    alert('Session expired. Please login again.');
-    this.router.navigate(['/customer-login']);
-    return;
-  }
+    if (this.address.addressType === 'Other' && !this.address.label.trim()) {
+      alert('Please give this address a name (e.g. "Gym", "Mom\'s House")');
+      return;
+    }
 
-  this.isSaving = true;
+    const customerId = localStorage.getItem('customerId');
+    if (!customerId) {
+      alert('Session expired. Please login again.');
+      this.router.navigate(['/customer-login']);
+      return;
+    }
 
-  this.http.post(`${this.apiBase}/address/${customerId}`, this.address)
-    .subscribe({
-      next: () => {
+    this.isSaving = true;
+
+    const request$ = this.address.id
+      ? this.http.put(`${this.apiBase}/address/${customerId}/${this.address.id}`, this.address)
+      : this.http.post(`${this.apiBase}/address/${customerId}`, this.address);
+
+    request$.subscribe({
+      next: (saved: any) => {
         this.isSaving = false;
 
         const fullAddress = `
-[${this.address.addressType}]
+[${this.address.label}]
 ${this.address.name}
 ${this.address.line1}, ${this.address.line2}, ${this.address.line3}
 Pin: ${this.address.pin}
@@ -160,18 +250,20 @@ ${this.address.latitude ? `Location: ${this.address.latitude}, ${this.address.lo
             complaint: this.complaint,
             address: fullAddress,
             name: this.address.name,
-            phone: this.address.phone,      // ✅ new
-            email: this.address.email,      // ✅ new
+            phone: this.address.phone,
+            email: this.address.email,
             lat: this.address.latitude,
             lng: this.address.longitude,
-            customerId: customerId          // ✅ new
+            customerId: customerId
           }
         });
       },
-      error: () => {
+      error: (err) => {
         this.isSaving = false;
-        alert('Failed to save address. Please try again.');
+        console.error('Save address error:', err);
+        const serverMessage = err?.error?.message || err?.error?.Message;
+        alert(serverMessage ? `Failed to save: ${serverMessage}` : 'Failed to save address. Please try again.');
       }
     });
-}
+  }
 }

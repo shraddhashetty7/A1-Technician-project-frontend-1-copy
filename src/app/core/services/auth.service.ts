@@ -1,38 +1,45 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'https://localhost:7122/api/auth';
+  constructor(private router: Router) {}
 
-  constructor(private http: HttpClient) {}
-
-  login(email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/login`, { email, password });
-  }
-
+  // Save login data
   saveAuthData(token: string, role: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
   }
 
+  // Get token
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
+  // Get role
   getRole(): string | null {
     return localStorage.getItem('role');
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-  }
-
+  // Check login status
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  // ✅ CHANGED: wipe EVERYTHING, not just named keys.
+  // Guarantees no stale customerId/phone/email survives into the
+  // next person's session, even if new keys get added later.
+  logout() {
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Full page reload instead of router.navigate. This resets ALL
+    // in-memory component/service state too (not just storage), so
+    // no component still holds the previous customer's data in a
+    // variable, cached observable, or Angular service singleton.
+    window.location.href = '/customer-login';
   }
 }

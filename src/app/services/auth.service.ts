@@ -30,10 +30,12 @@ export class AuthService {
   }
 
   // Logout
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-
-    this.router.navigate(['/login']);
-  }
+ logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('role');
+  localStorage.removeItem('customerId');
+  localStorage.removeItem('customerName');
+  localStorage.removeItem('customerPhone');
+  localStorage.removeItem('customerEmail');
+}
 }

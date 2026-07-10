@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router'; // ✅ ADD THIS
+import { AuthService } from '../../services/auth.service';
 import {
 IonContent,
 IonHeader,
@@ -18,16 +19,14 @@ templateUrl: './ac.page.html',
 styleUrls: ['./ac.page.scss'],
 standalone: true,
 imports: [
-IonContent,
-IonHeader,
-IonToolbar,
-IonCheckbox,
-IonButton,
-IonTextarea,
-IonLabel,
-CommonModule,
-FormsModule,
-RouterModule
+    IonContent,
+    IonCheckbox,
+    IonButton,
+    IonTextarea,
+    IonLabel,
+    CommonModule,
+    FormsModule,
+    RouterModule
 ]
 })
 
@@ -45,14 +44,18 @@ services = [
 { name:'PCB / Electrical Repair', icon:'pcb.png', selected:false },
 { name:'Remote Issue', icon:'remote.png', selected:false },
 { name:'Compressor Repair', icon:'compressor.png', selected:false },
-{ name:'Noise Problem', icon:'noise.png', selected:false }
+{ name:'Noise Problem', icon:'noise.png', selected:false },
+{ name:'Other', icon:'ac-service.png', selected:false }
 ];
 
 complaintText = '';
 
 cart:any[] = [];
 
- constructor(private router: Router) {}  // ✅ ADD HERE
+ constructor(
+  private router: Router,
+  private authService: AuthService
+) {}
 
 ngOnInit() { }
 
@@ -72,9 +75,27 @@ this.cart = this.services.filter(service => service.selected);
   }
 
 bookNow() {
-  this.router.navigate(['/booking-form'], {
+  const selectedServices = this.getSelectedServices();
+
+  if (!selectedServices) {
+    alert('Please select at least one service');
+    return;
+  }
+
+  if (!this.authService.isLoggedIn()) {
+    this.router.navigate(['/customer-login'], {
+      queryParams: {
+        returnUrl: '/tabs/saved-address',
+        service: selectedServices,
+        complaint: this.complaintText
+      }
+    });
+    return;
+  }
+
+  this.router.navigate(['/tabs/saved-address'], {
     queryParams: {
-      service: 'AC',
+      service: selectedServices,
       complaint: this.complaintText
     }
   });

@@ -13,51 +13,64 @@
   <!-- Background Image -->
   <div class="track-container">
 
-    <div class="order-card" *ngIf="booking">
-
-  <h2>Order #{{ booking.id }}</h2>
-
-  <p>
-    Service: {{ booking.serviceType }}
-  </p>
-
-  <p>
-    Customer: {{ booking.customerName }}
-  </p>
-
-  <p>
-    Status: {{ booking.status }}
-  </p>
-
-  <p *ngIf="booking.technicianName">
-    Technician: {{ booking.technicianName }}
-  </p>
-
-</div>
-    <!-- Timeline -->
-    <div class="timeline" *ngIf="booking">
-
-  <!-- STEP 1 -->
-  <div class="step" [ngClass]="getStepClass(1)">
-    <div class="circle"></div>
-    <div class="label">Assigned</div>
-  </div>
-
-  <!-- STEP 2 -->
-  <div class="step" [ngClass]="getStepClass(2)">
-    <div class="circle"></div>
-    <div class="label">In Transit</div>
-  </div>
-
-  <!-- STEP 3 -->
-  <div class="step" [ngClass]="getStepClass(3)">
-    <div class="circle"></div>
-    <div class="label">Completed</div>
-  </div>
-
-</div>
+    <!-- EMPTY STATE -->
+    <div class="empty-state" *ngIf="!hasActiveBooking">
+      <img src="assets/icons/no-order.png" class="empty-icon">
+      <h3>No Active Order</h3>
+      <p>You don't have any order in progress right now.</p>
+      <ion-button (click)="goToBookingHistory()">View Past Orders</ion-button>
     </div>
 
- 
+    <!-- ACTIVE BOOKING -->
+    <ng-container *ngIf="hasActiveBooking">
+
+      <div class="order-card" *ngIf="booking">
+
+        <h2>Order #{{ booking.id }}</h2>
+
+        <p>
+          Service: {{ booking.serviceType }}
+        </p>
+
+        <p>
+          Customer: {{ booking.customerName }}
+        </p>
+
+        <p>
+          Status: {{ booking.status }}
+        </p>
+
+        <p *ngIf="booking.technicianName">
+          Technician: {{ booking.technicianName }}
+        </p>
+
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline" *ngIf="booking">
+
+        <!-- STEP 1 -->
+        <div class="step" [ngClass]="getStepClass(1)">
+          <div class="circle"></div>
+          <div class="label">Assigned</div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step" [ngClass]="getStepClass(2)">
+          <div class="circle"></div>
+          <div class="label">In Transit</div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step" [ngClass]="getStepClass(3)">
+          <div class="circle"></div>
+          <div class="label">Completed</div>
+        </div>
+
+      </div>
+
+    </ng-container>
+
+  </div>
 
 </ion-content>

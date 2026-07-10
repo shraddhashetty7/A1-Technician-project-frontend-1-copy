@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router'; // ✅ ADD THIS
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-electrical',
@@ -48,19 +48,16 @@ services = [
 
 { name:'House Electrical Maintenance', icon:'maintenance.png', selected:false },
 { name:'Door bell', icon:'doorbell.png', selected:false },
+{ name:'Other', icon:'electrician.png', selected:false },
 
-{ name:'Solar Panel Installation', icon:'solar.png', selected:false },
-
-{ name:'Mixer Repair', icon:'mixer.png', selected:false },
-{ name:'Grinder Repair', icon:'grinder.png', selected:false },
-{ name:'Oven Repair', icon:'oven.png', selected:false },
-{ name:'Washing Machine Repair', icon:'washingmachine.png', selected:false },
-{ name:'Refrigerator Repair', icon:'fridge.png', selected:false },
 
 ];
 
 cart:any[]=[];
-constructor(private router: Router) {}  // ✅ ADD HERE
+constructor(
+  private router: Router,
+  private authService: AuthService
+) {}
 
 
 ngOnInit() {}
@@ -71,6 +68,17 @@ addToCart() {
 }
 
 bookNow() {
+  if (!this.authService.isLoggedIn()) {
+    this.router.navigate(['/customer-login'], {
+      queryParams: {
+        returnUrl: '/tabs/saved-address',
+        service: 'Electrical',
+        complaint: this.complaintText
+      }
+    });
+    return;
+  }
+
   this.router.navigate(['/tabs/saved-address'], {
     queryParams: {
       service: 'Electrical',
@@ -78,5 +86,4 @@ bookNow() {
     }
   });
 }
-
 }

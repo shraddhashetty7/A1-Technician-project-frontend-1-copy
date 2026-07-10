@@ -174,12 +174,7 @@ export const routes: Routes = [
             .then(m => m.SavedAddressPage)
       },
 
-      {
-        path: 'review',
-        loadComponent: () =>
-          import('./features/review/review.component')
-            .then(m => m.ReviewComponent)
-      },
+      
 
       // Default Tab
       {
